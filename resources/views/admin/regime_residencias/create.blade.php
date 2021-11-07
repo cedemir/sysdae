@@ -2,7 +2,7 @@
 
 @section('title')
 
-Cadastrar Programa Benefício
+Cadastrar Regime de Residência
 
     
 @endsection
@@ -10,24 +10,24 @@ Cadastrar Programa Benefício
 
 @section('content')
 <div class="col-12 my-5">
-<h2>Cadastrar Programa Beneficio</h2>
+<h2>Cadastrar Regime de Residência</h2>
 </div>
 
 <div class="col-12">
-    <form action="{{route('admin.programa_beneficios.store')}}" method="POST">
+    <form action="{{route('admin.regime_residencias.store')}}" method="POST">
         @csrf <input type="hidden" name="_token" value="{{csrf_token()}}">
 
         <div class="form-group">
-            <label>Programa de Benefício </label>
-            <input type="text" class="form-control @error('descricao_beneficio') is-invalid @enderror" name="descricao_beneficio">
-            @error('descricao_beneficio')
+            <label>Regime de Residência </label>
+            <input type="text" class="form-control @error('descricao_regime') is-invalid @enderror" name="descricao_regime">
+            @error('descricao_regime')
             <div class="alert alert-danger">
                 {{$message}}
             </div>
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-lg btn-success">Cadastrar descrição beneficio</button>
+        <button type="submit" class="btn btn-lg btn-success">Cadastrar Regime de Residência</button>
 
     </form>
 </div>

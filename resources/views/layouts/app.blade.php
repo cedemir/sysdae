@@ -249,7 +249,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.regimes_residencias.index')}}>
+                        <a class="nav-link active" href={{route('admin.regime_residencias.index')}}>
                             <span data-feather="file"></span>
                            Regime da Residência
                         </a>

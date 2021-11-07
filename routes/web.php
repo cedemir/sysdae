@@ -76,7 +76,7 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('ocorrencias', \App\Http\Controllers\Admin\OcorrenciaController::class);
     Route::resource('ocorrencias_atividades_orientadas', \App\Http\Controllers\Admin\Ocorrencias_atividades_orientadasController::class);
     Route::resource('programa_beneficios', \App\Http\Controllers\Admin\ProgramaBeneficioController::class);
-    Route::resource('regimes_residencias', \App\Http\Controllers\Admin\RegimeResidenciaController::class);
+    Route::resource('regime_residencias', \App\Http\Controllers\Admin\RegimeResidenciaController::class);
     Route::resource('residencias', \App\Http\Controllers\Admin\ResidenciaController::class);
     
    
