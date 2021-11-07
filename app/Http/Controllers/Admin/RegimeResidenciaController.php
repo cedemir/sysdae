@@ -27,21 +27,21 @@ class RegimeResidenciaController extends Controller
        
         $regime_residencia=request()->all();
         
-        regime_residencia::create($regime_residencia);
+        Regime_residencia::create($regime_residencia);
         return redirect()->route('admin.regime_residencias.index');
         //return redirect()->to('/admin/regime_residencias');
     }
 
     public function edit($regime_residencia){
 
-        $regime_residencia=regime_residencia::findOrFail($regime_residencia);
+        $regime_residencia=Regime_residencia::findOrFail($regime_residencia);
 
         return view('admin.regime_residencias.edit',compact('regime_residencia'));
 
     }
 
     public function update($regime_residencia){
-        $regime_residencia = regime_residencia::findOrFail($regime_residencia);
+        $regime_residencia = Regime_residencia::findOrFail($regime_residencia);
         $regime_residencia->update(request()->all());
         //return redirect()->back();
         return redirect()->route('admin.regime_residencias.index');
@@ -49,7 +49,7 @@ class RegimeResidenciaController extends Controller
     }
 
     public function destroy($regime_residencia){
-        $regime_residencia= regime_residencia::findOrFail($regime_residencia);
+        $regime_residencia= Regime_residencia::findOrFail($regime_residencia);
         $regime_residencia->delete();
         return redirect()->route('admin.regime_residencias.index');
     }

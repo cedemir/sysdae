@@ -14,15 +14,15 @@ Atualizar Regime de Residência
 </div>
 
 <div class="col-12">
-    <form action="{{route('admin.programa_beneficios.update',$programa_beneficio->id)}}" method="POST">
+    <form action="{{route('admin.regime_residencias.update',$regime_residencia->id)}}" method="POST">
         @csrf <input type="hidden" name="_token" value="{{csrf_token()}}">
         @method("PUT")
         
 
 
         <div class="form-group">
-            <label>Programa de Benefício </label>
-            <input type="text" class="form-control @error('descricao_beneficio') is-invalid @enderror" name="descricao_beneficio" value="{{$programa_beneficio->descricao_beneficio}}">
+            <label>Regime de Residência </label>
+            <input type="text" class="form-control @error('descricao_regime') is-invalid @enderror" name="descricao_regime" value="{{$regime_residencia->descricao_regime}}">
             @error('descricao_beneficio')
             <div class="alert alert-danger">
                 {{$message}}
@@ -35,7 +35,7 @@ Atualizar Regime de Residência
         
 
         
-        <button type="submit" class="btn btn-lg btn-success">Atualizar Programa de Benefício</button>
+        <button type="submit" class="btn btn-lg btn-success">Atualizar Regime de Residência</button>
 
     </form>
 </div>

@@ -2,7 +2,7 @@
 
 @section('title')
 
-Minhas Formas de Atendimentos
+Meus Programas de Benefícios
 
     
 @endsection

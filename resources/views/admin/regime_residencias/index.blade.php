@@ -2,7 +2,7 @@
 
 @section('title')
 
-Meus Regimes de Residências
+Meus Regimes de Residência
 
     
 @endsection
@@ -12,7 +12,7 @@ Meus Regimes de Residências
 
 <div class="row">
     <div class="col-12 d-flex justify-content-between align-itens-center my=5">
-        <h2>Meus Regimes de Residências</h2>
+        <h2>Meus Regimes de Residência</h2>
         <a href="{{route('admin.regime_residencias.create')}}" class="btn btn-success">Cadastrar Regimes de Residência</a>
     </div>
     <div class="col-12">
@@ -20,7 +20,7 @@ Meus Regimes de Residências
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Regimes de Residências</th>
+                    <th>Regime de Residência</th>
                     <th width="16%">Ações</th>
                     
                 </tr>
