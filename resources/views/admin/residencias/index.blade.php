@@ -20,7 +20,9 @@ Minhas Residências
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Residência Estudantil</th>
+                    <th>AlunoId</th>
+                    <th>Data Entrada</th>
+                    <th>Data Saída</th>
                     <th width="16%">Ações</th>
                     
                 </tr>
@@ -30,6 +32,7 @@ Minhas Residências
                      
                 <tr>
                     <td>{{$residencia->id}} </td>
+                    <td>{{$residencia->aluno_id}} </td>
                     <td>{{$residencia->data_entrada}}</td>
                     <td>{{$residencia->data_saida}}</td>
                     
@@ -45,7 +48,7 @@ Minhas Residências
                 @empty
     
                 <tr>
-                    i<td colspan=12>Nenhuma Residência encontrada</td>
+                    <td colspan=12>Nenhuma Residência encontrada</td>
                 </tr>        
     
                 @endforelse

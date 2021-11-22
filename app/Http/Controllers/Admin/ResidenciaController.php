@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Regime_residencia;
 use App\Models\Residencia;
+use App\Models\Aluno;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResidenciaRequest;
 
@@ -26,9 +27,9 @@ class ResidenciaController extends Controller
 
     public function create(){
         //$this->authorize('admin.residencias.create');
-        
+        $alunos=Aluno::all();
         $regime_residencias=Regime_residencia::all();
-        return view('admin.residencias.create', compact('regimes_residencias'));
+        return view('admin.residencias.create', compact('regime_residencias','alunos'));
 
     }
 
@@ -36,7 +37,7 @@ class ResidenciaController extends Controller
         //$this->authorize('admin.residencias.store');
         $residencia=request()->all();
         //$residencia['slug']=Str::slug($residencia['cpf']);
-        residencia::create($residencia);
+        Residencia::create($residencia);
         return redirect()->route('admin.residencias.index');
        
     }
@@ -45,16 +46,16 @@ class ResidenciaController extends Controller
 
         
         $regime_residencias=Regime_residencia::all();
-          
+        $alunos=Aluno::all();
         $residencia=Residencia::findOrFail($residencia);
-        $this->authorize('update',$residencia);
+        //$this->authorize('update',$residencia);
 
-        return view('admin.residencias.edit',compact('regime_residencias'));
+        return view('admin.residencias.edit',compact('regime_residencias','residencia','alunos'));
 
     }
 
     public function update($residencia, ResidenciaRequest $request){
-        $residencia = residencia::findOrFail($residencia);
+        $residencia = Residencia::findOrFail($residencia);
         $residencia->update(request()->all());
         //return redirect()->back();
         return redirect()->route('admin.residencias.index');

@@ -24,13 +24,14 @@ class ResidenciaRequest extends FormRequest
     public function rules()
     {
         return [
-            'matricula'=> 'required',
+            'aluno_id'=> 'required',
             'data_entrada'=> 'required',
-            'data_saida'=> 'required',
             'regime_residencia_id'=> 'required',
-            'apto_antigo'=> 'required',
-            'apto_novo'=> 'required',
-            'data_troca'=> 'required'
+            'apto'=> 'required',
+            'data_saida'=> 'nullable',
+            'apto_antigo'=> 'nullable',
+            'apto_novo'=> 'nullable',
+            'data_troca'=> 'nullable'
             
         ];
     }

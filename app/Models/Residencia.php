@@ -10,21 +10,29 @@ class Residencia extends Model
     use HasFactory;
     // matricula 	residencia_id 	armario_antigo 	armario_novo 	data_troca 
     protected $table='residencia';
-    protected $fillable=['matricula',
-    //'residencia_id',
-    'apto_antigo', 
-    'apto_novo', 
+    protected $fillable=[
+    'aluno_id',
     'data_entrada',
     'data_saida',
     'regime_residencia_id',
-    'data_troca'];
+    'apto_antigo', 
+    'apto_novo', 
+    'apto',
+    'data_troca'
+];
 
-    protected $dates=['data_troca','data_entrada','data_saida'];
+    protected $dates=['data_entrada','data_saida','data_troca'];
 
-
+    public function setDataAttribute($value){
+        $this->attributes['data_entrada']=(\DateTime::createFromFormat('d/m/Y',$value))->format('Y-m-d');
+        $this->attributes['data_saida']=(\DateTime::createFromFormat('d/m/Y',$value))->format('Y-m-d');
+        $this->attributes['data_troca']=(\DateTime::createFromFormat('d/m/Y',$value))->format('Y-m-d');
+      }
      public function regimes_residencia(){
-    return $this->hasOne(Regimes_residencia::class); //id_foto
+        return $this->hasOne(Regime_residencia::class); //id_foto
 } 	
-    
+    public function alunos(){
+        return $this->hasOne(Aluno::class);
+    }    
 }
 
