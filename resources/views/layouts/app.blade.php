@@ -262,6 +262,29 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link active" href={{route('admin.residencia_autorizacoes.index')}}>
+                            <span data-feather="file"></span>
+                           Autorizações de Saída da Residência Estudantil
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href={{route('admin.residencia_faltas.index')}}>
+                            <span data-feather="file"></span>
+                        Faltas na Residência Estudantil
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href={{route('admin.series.index')}}>
+                            <span data-feather="file"></span>
+                        Séries
+                        </a>
+                    </li>
+
+
+
                 </ul>
             </div>
         </nav>

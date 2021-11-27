@@ -2,7 +2,7 @@
 
 @section('title')
 
-Minhas Residências
+Minha Residência Estudantil
 
     
 @endsection
@@ -12,7 +12,7 @@ Minhas Residências
 
 <div class="row">
     <div class="col-12 d-flex justify-content-between align-itens-center my=5">
-        <h2>Minhas Residências</h2>
+        <h2>Minha Residência Estudantil</h2>
         <a href="{{route('admin.residencias.create')}}" class="btn btn-success">Cadastrar Residência Estudantil</a>
     </div>
     <div class="col-12">
@@ -33,8 +33,9 @@ Minhas Residências
                 <tr>
                     <td>{{$residencia->id}} </td>
                     <td>{{$residencia->aluno_id}} </td>
-                    <td>{{$residencia->data_entrada}}</td>
-                    <td>{{$residencia->data_saida}}</td>
+                    <td>{{$residencia->data_entrada->format('d/m/Y')}}</td>
+                    <td>{{ $residencia->data_saida !=null ? $residencia->data_saida->format('d/m/Y') : $residencia->data_saida }}
+                    </td>
                     
                     <td class="d-flex justify-content-between"><a href="{{route('admin.residencias.edit',$residencia->id)}}" class="btn btn-warning">Editar</a>
                         <form action="{{route('admin.residencias.destroy',$residencia->id)}}" method="post">

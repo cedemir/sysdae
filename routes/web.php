@@ -2,19 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
-use App\Models\Aluno;
-use App\Models\Alojamento;
-use App\Models\Apartamento;
-use App\Models\Atendimento;
-use App\Models\Curso;
-use App\Models\Matricula;
-use App\Models\Serie;
-use App\Models\Turma;
-use App\Models\Ocorrencias_atividades_orientadas;
-use App\Models\Ocorrencia;
-use App\Models\Setor;
-use App\Models\Medidas_disciplinares;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\UserController;
 use App\Http\Controllers\Manager\ResourceController;
@@ -78,8 +65,9 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('programa_beneficios', \App\Http\Controllers\Admin\ProgramaBeneficioController::class);
     Route::resource('regime_residencias', \App\Http\Controllers\Admin\RegimeResidenciaController::class);
     Route::resource('residencias', \App\Http\Controllers\Admin\ResidenciaController::class);
-    
-   
+    Route::resource('residencia_autorizacoes', \App\Http\Controllers\Admin\ResidenciaAutorizacoesController::class);
+    Route::resource('residencia_faltas', \App\Http\Controllers\Admin\ResidenciaFaltasController::class);
+    Route::resource('series', \App\Http\Controllers\Admin\SerieController::class);
 });
 
 

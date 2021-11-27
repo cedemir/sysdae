@@ -58,7 +58,7 @@ Cadastrar Residência Estudantil
 
         <div class="form-group">
             <label>Apartamento </label>
-            <input type="date" class="form-control @error('apto') is-invalid @enderror" name="apto">
+            <input type="text" class="form-control @error('apto') is-invalid @enderror" name="apto">
             @error('apto')
             <div class="alert alert-danger">
                 {{$message}}

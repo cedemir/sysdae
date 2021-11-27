@@ -13,11 +13,11 @@ class Residencia extends Model
     protected $fillable=[
     'aluno_id',
     'data_entrada',
-    'data_saida',
+    'data_saida',  
     'regime_residencia_id',
+    'apto',
     'apto_antigo', 
     'apto_novo', 
-    'apto',
     'data_troca'
 ];
 
@@ -32,7 +32,7 @@ class Residencia extends Model
         return $this->hasOne(Regime_residencia::class); //id_foto
 } 	
     public function alunos(){
-        return $this->hasOne(Aluno::class);
+        return $this->hasMany(Aluno::class);
     }    
 }
 

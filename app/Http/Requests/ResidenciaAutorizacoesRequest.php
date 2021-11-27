@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ResidenciaRequest extends FormRequest
+class ResidenciaAutorizacoesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,16 @@ class ResidenciaRequest extends FormRequest
     public function rules()
     {
         return [
-            'aluno_id'=> 'required',
-            'data_entrada'=> 'required',
-            'data_saida'=> 'nullable',
-            'regime_residencia_id'=> 'required',
-            'apto'=> 'required',
-            'apto_antigo'=> 'nullable',
-            'apto_novo'=> 'nullable',
-            'data_troca'=> 'nullable'
-            
+            'aluno_id'=>'required',
+            'autorizacao_parcial'=>'required',
+            'data'=>'required',
+            'justificativa'=>'required',
+            'forma_autorizacao'=>'required', 
+            'quem_autorizou'=>'required'
+
         ];
+
+    
     }
 
     public function messages()

@@ -277,8 +277,8 @@ DROP TABLE IF EXISTS `residencia`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `residencia` (
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT,
-  `matricula` bigint(11) unsigned NOT NULL,
-  `data_entrada` date DEFAULT NULL,
+  `aluno_id` bigint(20) unsigned NOT NULL,
+  `data_entrada` date NOT NULL,
   `data_saida` date DEFAULT NULL,
   `regime_residencia_id` bigint(20) unsigned NOT NULL,
   `apto` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -289,6 +289,8 @@ CREATE TABLE `residencia` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `residencia_residencia_id_foreign` (`regime_residencia_id`),
+  KEY `residencia_aluno_id_foreign` (`aluno_id`),
+  CONSTRAINT `residencia_aluno_id_foreign` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`) ON DELETE CASCADE,
   CONSTRAINT `residencia_residencia_id_foreign` FOREIGN KEY (`regime_residencia_id`) REFERENCES `regimes_residencia` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -296,25 +298,29 @@ DROP TABLE IF EXISTS `residencia_autorizacoes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `residencia_autorizacoes` (
-  `matricula` bigint(11) unsigned NOT NULL,
+  `aluno_id` bigint(11) unsigned NOT NULL,
   `autoricacao_parcial` tinyint(1) NOT NULL,
   `data` date NOT NULL,
   `justificativa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `forma_autorizacao` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `quem_autorizou` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  KEY `residencia_autorizacoes_aluno_id` (`aluno_id`),
+  CONSTRAINT `residencia_autorizacoes_aluno_id` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `residencia_faltas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `residencia_faltas` (
-  `matricula` bigint(20) unsigned NOT NULL,
+  `aluno_id` bigint(20) unsigned NOT NULL,
   `data_falta` date NOT NULL,
   `motivo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  KEY `residencia_faltas_aluno_id` (`aluno_id`),
+  CONSTRAINT `residencia_faltas_aluno_id` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `resource_role`;
@@ -354,14 +360,6 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `semirresidentes`;
-/*!50001 DROP VIEW IF EXISTS `semirresidentes`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `semirresidentes` (
-  `TotalResidentes` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `serie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -425,20 +423,6 @@ CREATE TABLE `users` (
   CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-/*!50001 DROP TABLE IF EXISTS `semirresidentes`*/;
-/*!50001 DROP VIEW IF EXISTS `semirresidentes`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `semirresidentes` AS select count(`matricula`.`matricula`) AS `TotalResidentes` from ((`matricula` join `residencia`) join `regimes_residencia`) where `residencia`.`matricula` = `matricula`.`matricula` and `residencia`.`regime_residencia_id` = `regimes_residencia`.`id` and `regimes_residencia`.`descricao_regime` = 'Semirresidente' */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
