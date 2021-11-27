@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Serie;
 use App\Http\Requests\SerieRequest;
+
 class SerieController extends Controller
 {
     public function index(){
-        $serie=Serie::paginate(10); 
+        $series=Serie::paginate(10); 
         
-        return view('admin.series.index', compact('serie'));
+        return view('admin.series.index', compact('series'));
     }
 
     public function create(){
@@ -21,38 +22,38 @@ class SerieController extends Controller
     }
 
     public function store(SerieRequest $request){
-        $serie=request()->all();
+        $series=request()->all();
         //$serie['slug']=Str::slug($serie['cpf']);
-        Serie::create($serie);
+        Serie::create($series);
         return redirect()->route('admin.series.index');
        
     }
 
-    public function edit($serie){    
+    public function edit($series){    
 
-        $serie=Serie::findOrFail($serie);
+        $serie=Serie::findOrFail($series);
 
-        return view('admin.series.edit',compact('serie'));
+        return view('admin.series.edit',compact('series'));
 
     }
 
-    public function update($serie, SerieRequest $request){
-        $serie = serie::findOrFail($serie);
-        $serie->update(request()->all());
+    public function update($series, SerieRequest $request){
+        $series = Serie::findOrFail($series);
+        $series->update(request()->all());
         //return redirect()->back();
         return redirect()->route('admin.series.index');
 
     }
 
-    public function destroy($serie){
-        $serie = Serie::findOrFail($serie);
-        $serie->delete();
+    public function destroy($series){
+        $series = Serie::findOrFail($series);
+        $series->delete();
         return redirect()->route('admin.series.index');
     }
 
-    public function show($serie)
+    public function show($series)
     {
-        return "Serie " . $serie;
+        return "Serie " . $series;
     }
 
 }

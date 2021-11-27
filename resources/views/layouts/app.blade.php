@@ -283,6 +283,14 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link active" href={{route('admin.setores.index')}}>
+                            <span data-feather="file"></span>
+                        Setores
+                        </a>
+                    </li>
+
+
 
 
                 </ul>
