@@ -29,25 +29,25 @@ class SetorController extends Controller
        
     }
 
-    public function edit($setores){    
+    public function edit($setor){    
 
-        $setor=setor::findOrFail($setores);
+        $setor=setor::findOrFail($setor);
 
-        return view('admin.setores.edit',compact('setores'));
+        return view('admin.setores.edit',compact('setor'));
 
     }
 
-    public function update($setores, SetorRequest $request){
-        $setores = Setor::findOrFail($setores);
-        $setores->update(request()->all());
+    public function update($setor, SetorRequest $request){
+        $setor = Setor::findOrFail($setor);
+        $setor->update(request()->all());
         //return redirect()->back();
         return redirect()->route('admin.setores.index');
 
     }
 
-    public function destroy($setores){
-        $setores = Setor::findOrFail($setores);
-        $setores->delete();
+    public function destroy($setor){
+        $setor = Setor::findOrFail($setor);
+        $setor->delete();
         return redirect()->route('admin.setores.index');
     }
 

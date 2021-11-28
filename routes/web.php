@@ -69,6 +69,9 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('residencia_faltas', \App\Http\Controllers\Admin\ResidenciaFaltasController::class);
     Route::resource('series', \App\Http\Controllers\Admin\SerieController::class);
     Route::resource('setores', \App\Http\Controllers\Admin\SetorController::class);
+    Route::resource('situacao_alunos', \App\Http\Controllers\Admin\SituacaoAlunoController::class);
+    Route::resource('turmas', \App\Http\Controllers\Admin\TurmaController::class);
+    
 });
 
 

@@ -290,6 +290,20 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link active" href={{route('admin.situacao_alunos.index')}}>
+                            <span data-feather="file"></span>
+                        Situacao Dos Alunos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href={{route('admin.turmas.index')}}>
+                            <span data-feather="file"></span>
+                        Turmas
+                        </a>
+                    </li>
+
 
 
 

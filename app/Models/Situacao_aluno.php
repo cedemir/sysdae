@@ -9,7 +9,7 @@ class Situacao_aluno extends Model
 {
     use HasFactory;
     
-     protected $table='situacao_aluno';
+    protected $table='situacao_aluno';
     protected $fillable=['descricao_situacao'];
 
      public function  aluno(){
