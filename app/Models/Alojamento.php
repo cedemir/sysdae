@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Alojamento extends Model
 {
     use HasFactory;
@@ -12,7 +13,8 @@ class Alojamento extends Model
     protected $fillable=[
 
     'descricao_alojamento',
-    'nro_aptos', 	
+    'nro_aptos',
+    'user_id', 	
     'responsavel'
 ];
 
@@ -20,6 +22,10 @@ class Alojamento extends Model
 public function apartamento(){
     return $this->belongsTo(Apartamento::class);    
 }
+
+public function sexo(){
+    return $this->hasOne(User::class); //user_id
+  }
 
 }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Alojamento;
 use App\Http\Requests\AlojamentoRequest;
+use App\Models\User;
 
 class AlojamentoController extends Controller
 {
@@ -15,9 +16,10 @@ class AlojamentoController extends Controller
     }
 
     public function index(){
+        $users=User::all();
         $alojamentos= Alojamento::paginate(10); 
         
-        return view('admin.alojamentos.index', compact('alojamentos'));
+        return view('admin.alojamentos.index', compact('alojamentos','users'));
     }
 
     public function create(){
@@ -36,7 +38,7 @@ class AlojamentoController extends Controller
     }
 
     public function edit($alojamento){
-
+        $users=User::all();
         $alojamento=Alojamento::findOrFail($alojamento);
 
         return view('admin.alojamentos.edit',compact('alojamento'));

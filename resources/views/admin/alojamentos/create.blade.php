@@ -38,6 +38,15 @@ Cadastrar Alojamento
             @enderror
         </div>
     
+        <div class="form-group">
+            <label > Responsável </label>
+            <select class="form-control" name="user_id" id="user_id" required>
+                <option value=""> Selecione o Responsável</option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id}}"> {{ $user->name}}</option>
+                @endforeach
+            </select>
+        </div>
 
         <div class="form-group">
             <label>Responsável</label>

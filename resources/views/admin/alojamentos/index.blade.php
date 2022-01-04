@@ -33,7 +33,7 @@ Meus Alojamentos
                     <td>{{$alojamento->id}} </td>
                     <td>{{$alojamento->descricao_alojamento}}</td>
                     <td>{{$alojamento->nro_aptos}}</td>
-                    <td>{{$alojamento->responsavel}} </td>
+                    <td>{{$alojamento->user_id}} </td>
                     <td class="d-flex justify-content-between"><a href="{{route('admin.alojamentos.edit',$alojamento->id)}}" class="btn btn-warning">Editar</a>
                         <form action="{{route('admin.alojamentos.destroy',$alojamento->id)}}" method="post">
                             @csrf
