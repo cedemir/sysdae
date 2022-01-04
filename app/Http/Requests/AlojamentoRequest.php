@@ -22,7 +22,7 @@ class AlojamentoRequest extends FormRequest
         return[
             'descricao_alojamento'=> 'required',
             'nro_aptos'=> 'required', 	
-            'responsavel'=> 'required'
+            'user_id'=> 'required'
 
         ];
     }
