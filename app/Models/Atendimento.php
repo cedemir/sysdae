@@ -14,7 +14,7 @@ class Atendimento extends Model
     
     'data',
     'hora', 	
-    'servidores_responsaveis',
+    'user_id',
     'atendimento_id',
     'relato_atendimento',
     'outras_observacoes', 	
@@ -32,4 +32,9 @@ public function setDataAttribute($value){
 public function forma_atendimento(){
   return $this->hasOne(Forma_atendimento::class); //forma de atendimento
 }
+
+public function users(){
+  return $this->hasOne(Users::class); //user_id
+}
+
 }

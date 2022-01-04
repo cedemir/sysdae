@@ -42,14 +42,15 @@ Cadastrar Atendimento
     
 
         <div class="form-group">
-            <label>Servidores Responsáveis</label>
-            <input type="text" class="form-control @error('servidores_responsaveis') is-invalid @enderror" name="servidores_responsaveis">
-            @error('servidores_responsaveis')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
+            <label > Servidor Responsável </label>
+            <select class="form-control" name="user_id" id="user_id" required>
+                <option value=""> Selecione o Servidor Responsável </option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id}}"> {{ $user->name}}</option>
+                @endforeach
+            </select>
         </div>
+       
 
         <div class="form-group">
             <label > Forma de Atendimento </label>

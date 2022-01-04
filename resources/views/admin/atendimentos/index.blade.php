@@ -22,7 +22,7 @@ Meus Atendimentos
                     <th>Id</th>
                     <th>Data</th>
                     <th>Hora</th>
-                    <th>Servidores Responsáveis</th>
+                    <th>Servidore Responsável</th>
                     <th>Forma Atendimento</th>
                     <th>Relato Atendimento</th>
                     <th>Ações</th>
@@ -36,7 +36,7 @@ Meus Atendimentos
                     <td>{{$atendimento->id}} </td>
                     <td>{{$atendimento->data->format('d/m/Y')}}</td>
                     <td>{{$atendimento->hora}}</td>
-                    <td>{{$atendimento->servidores_responsaveis}}</td>
+                    <td>{{$atendimento->user_id}}</td>
                     <td>{{$forma_atendimento->forma_atendimento}}</td>
                     <td>{{$atendimento->relato_atendimento}}</td>
                     <td><a href="{{route('admin.atendimentos.edit',$atendimento->id)}}" class="btn btn-warning">Editar</a>

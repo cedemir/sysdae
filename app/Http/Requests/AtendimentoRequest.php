@@ -28,7 +28,7 @@ class AtendimentoRequest extends FormRequest
             //'data'=>'date_format:d/m/Y|required',
             'data'=>'required',
             'hora'=>'required',	
-            'servidores_responsaveis'=>'required',
+            'user_id'=>'required',
             'relato_atendimento'=>'required',
             'outras_observacoes'=>'required',	
             'historia_de_vida'=>'required',

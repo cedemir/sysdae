@@ -7,18 +7,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Atendimento;
 use App\Models\Forma_atendimento;
 use App\Http\Requests\AtendimentoRequest;
+use App\Models\User;
+
 class AtendimentoController extends Controller
 {
     public function index(){
         $atendimentos= Atendimento::paginate(10); 
-        
-        return view('admin.atendimentos.index', compact('atendimentos'));
+        $users=User::all();
+        return view('admin.atendimentos.index', compact('atendimentos','users'));
     }
 
     public function create(){
         $forma_atendimentos= Forma_atendimento::all(); 
+        $users=User::all();
         
-        return view('admin.atendimentos.create', compact('forma_atendimentos'));
+        return view('admin.atendimentos.create', compact('forma_atendimentos','users'));
 
     }
 
