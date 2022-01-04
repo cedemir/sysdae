@@ -22,7 +22,7 @@ Meus Atendimentos
                     <th>Id</th>
                     <th>Data</th>
                     <th>Hora</th>
-                    <th>Servidore Responsável</th>
+                    <th>Servidor Responsável</th>
                     <th>Forma Atendimento</th>
                     <th>Relato Atendimento</th>
                     <th>Ações</th>
