@@ -23,8 +23,8 @@ class AlojamentoController extends Controller
     }
 
     public function create(){
-        
-        return view('admin.alojamentos.create');
+        $users=User::all();
+        return view('admin.alojamentos.create',compact('users'));
 
     }
 
