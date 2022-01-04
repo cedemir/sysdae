@@ -48,15 +48,7 @@ Cadastrar Alojamento
             </select>
         </div>
 
-        <div class="form-group">
-            <label>Responsável</label>
-            <input type="text" class="form-control @error('responsavel') is-invalid @enderror" name="responsavel">
-            @error('responsavel')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
-        </div>
+        
 
 
         <button type="submit" class="btn btn-lg btn-success">Cadastrar Alojamento</button>

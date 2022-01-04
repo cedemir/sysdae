@@ -41,14 +41,16 @@ Atualizar alojamento
         </div>
 
         <div class="form-group">
-            <label>Responsável </label>
-            <input type="text" class="form-control @error('responsavel') is-invalid @enderror" name="responsavel" value="{{$alojamento->responsavel}}">
-            @error('responsavel')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
+            <label > Responsável</label>
+            <select class="form-control" name="user_id" required >
+                <option value="{{ $alojamento->user_id}}">Selecione o Responsável   </option>
+                @foreach($users as $user)
+                <option value="{{ $user->id }}" {{$alojamento->user_id == $user->id  ? 'selected' : ''}}>{{ $user->name}}</option>
+                @endforeach
+            </select>
         </div>
+
+        
         <button type="submit" class="btn btn-lg btn-success">Atualizar alojamento</button>
 
     </form>
