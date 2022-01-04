@@ -28,7 +28,7 @@ Cadastrar Matrículas
 
         <div class="form-group">
             <label > Nome do Aluno </label>
-            <select class="form-control" name="id_aluno" id="id_aluno" required>
+            <select class="form-control" name="aluno_id" id="aluno_id" required>
                 <option value=""> Selecione o Aluno </option>
                 @foreach($alunos as $aluno)
                     <option value="{{ $aluno->id}}"> {{ $aluno->nome}}</option>
@@ -38,7 +38,7 @@ Cadastrar Matrículas
 
         <div class="form-group">
             <label > Série do Aluno </label>
-            <select class="form-control" name="id_serie" id="id_serie" required>
+            <select class="form-control" name="serie_id" id="serie_id" required>
                 <option value=""> Selecione a Série </option>
                 @foreach($series as $serie)
                     <option value="{{ $serie->id}}"> {{ $serie->descricao_serie}}</option>
@@ -51,7 +51,7 @@ Cadastrar Matrículas
 
         <div class="form-group">
             <label > Turma do Aluno </label>
-            <select class="form-control" name="id_turma" id="id_turma" required>
+            <select class="form-control" name="turma_id" id="turma_id" required>
                 <option value=""> Selecione a Turma</option>
                 @foreach($turmas as $turma)
                     <option value="{{ $turma->id}}"> {{ $turma->descricao_turma}}</option>
@@ -72,7 +72,7 @@ Cadastrar Matrículas
 
         <div class="form-group">
             <label > Curso do Aluno </label>
-            <select class="form-control" name="id_curso" id="id_curso" required>
+            <select class="form-control" name="curso_id" id="curso_id" required>
                 <option value=""> Selecione o Curso </option>
                 @foreach($cursos as $curso)
                     <option value="{{ $curso->id}}"> {{ $curso->descricao_curso}}</option>
