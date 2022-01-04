@@ -38,16 +38,16 @@ Cadastrar Aluno
             @enderror
         </div>
     
-
         <div class="form-group">
-            <label>Sexo</label>
-            <input type="text" class="form-control @error('sexo') is-invalid @enderror" name="sexo" value="{{old('sexo')}}">
-            @error('sexo')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
+            <label > Sexo do Aluno </label>
+            <select class="form-control" name="sexo_id" id="sexo_id" required>
+                <option value=""> Selecione o Sexo do Aluno</option>
+                @foreach($sexos as $sexo)
+                    <option value="{{ $sexo->id}}"> {{ $sexo->sexo}}</option>
+                @endforeach
+            </select>
         </div>
+       
 
         <div class="form-group">
             <label>Email </label>

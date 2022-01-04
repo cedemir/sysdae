@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Programa_beneficio;
 use App\Models\Aluno;
+use App\Models\Sexo;
 use App\Models\Situacao_aluno;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AlunoRequest;
@@ -27,9 +28,10 @@ class AlunoController extends Controller
 
     public function create(){
         //$this->authorize('admin.alunos.create');
+        $sexos=Sexo::all();
         $situacao_alunos= Situacao_aluno::all(); 
         $programa_beneficios=Programa_beneficio::all();
-        return view('admin.alunos.create', compact('situacao_alunos','programa_beneficios'));
+        return view('admin.alunos.create', compact('situacao_alunos','programa_beneficios','sexos'));
 
     }
 
@@ -43,14 +45,14 @@ class AlunoController extends Controller
     }
 
     public function edit($aluno){
-
+        $sexos=Sexo::all();
         $situacao_alunos= Situacao_aluno::all(); 
         $programa_beneficios=Programa_beneficio::all();
           
         $aluno=Aluno::findOrFail($aluno);
-        $this->authorize('update',$aluno);
+        //$this->authorize('update',$aluno);
 
-        return view('admin.alunos.edit',compact('aluno','situacao_alunos','programa_beneficios'));
+        return view('admin.alunos.edit',compact('aluno','situacao_alunos','programa_beneficios','sexos'));
 
     }
 

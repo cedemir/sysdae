@@ -12,7 +12,7 @@ class Aluno extends Model
     protected $fillable=[
   'cpf',
   'nome',
-  'sexo',
+  'sexo_id',
   'email', 
   'slug',
   'telefone', 
@@ -42,5 +42,8 @@ public function situacao(){
   return $this->hasOne(Situacao::class); //id_situacao
 }
 
+public function sexo(){
+  return $this->hasOne(Sexo::class); //id_situacao
+}
 
 } 

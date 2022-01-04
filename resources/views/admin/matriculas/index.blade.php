@@ -31,7 +31,8 @@ Minhas Matrículas
             </thead>
             <tbody>
                 @forelse ($matriculas as $matricula)
-                <?php $aluno=App\Models\Aluno::where('id','=',$matricula->aluno_id)->first();
+                <?php 
+                $aluno=App\Models\Aluno::where('id','=',$matricula->aluno_id)->first();
                 $serie=App\Models\Serie::where('id','=',$matricula->serie_id)->first();
                 $turma=App\Models\Turma::where('id','=',$matricula->turma_id)->first();
                 $curso=App\Models\Curso::where('id','=',$matricula->curso_id)->first();

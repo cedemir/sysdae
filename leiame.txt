@@ -22,3 +22,7 @@ How to install and run on your local system
     
     composer require laracasts/flash
     
+    composer require barryvdh/laravel-dompdf
+    
+    php artisan vendor:publish
+    

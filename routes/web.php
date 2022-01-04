@@ -6,6 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\UserController;
 use App\Http\Controllers\Manager\ResourceController;
 use App\Http\Controllers\Manager\RoleController;
+use App\Http\Controllers\Admin\ResidentesController;
+use Illuminate\Database\Schema\Blueprint;
+
+use Illuminate\Support\Facades\Schema;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,17 +75,62 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('setores', \App\Http\Controllers\Admin\SetorController::class);
     Route::resource('situacao_alunos', \App\Http\Controllers\Admin\SituacaoAlunoController::class);
     Route::resource('turmas', \App\Http\Controllers\Admin\TurmaController::class);
+
+   
     
 });
 
 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Route::get('residentes',     [App\Http\Controllers\Admin\ResidentesController::class, 'showResidentes'])->name('residentes');
+//Route::get('residentes_pdf', [App\Http\Controllers\Admin\ResidentesController::class, 'createPDF'])->name('residentes_pdf');
+//Route::get('generate-pdf', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('generate-pdf');
+Route::resource('users','App\Http\Controllers\UserController');
+Route::resource('residentes','App\Http\Controllers\ResidentesController');
+Route::resource('semirresidentes','App\Http\Controllers\SemirresidentesController');
+
+Route::get('totalAlunos', function () {
+
+  
+
+    $ano = 2021;
+
+    $getAluno = DB::select(
+
+       'CALL TotalAlunosPorAno('.$ano.')'
+
+    );
+    $stdArray=$getAluno;
+  
+    /*** cast the object ***/    
+    foreach($stdArray as $key => $value)
+    {
+            $stdArray[$key] = (array) $value;
+            
+    }   
+    /*** show the results ***/  
+    //print_r( $stdArray );
+/*
+    foreach($stdArray["TotalAlunos"] as $indice => $valor){
+        echo $indice.":".$valor."<br>";
+    }
+*/
+    echo "<br>";
+    echo "<br>";
+    $array = $stdArray;
+    $json = json_encode($array);
+    //print_r($json);
+    $phpStringArray = str_replace(array("{", "}", ":"), 
+                                  array("Resultado(", ")", "="), $json);
+    echo "<h2>";
+    echo $phpStringArray;
+
+});
+/*
 Route::group(['middleware' => 'auth', 'prefix' => 'manager'], function(){
 	Route::get('/', function(){
 		return redirect()->route('users.index');
@@ -94,3 +143,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'manager'], function(){
 	Route::resource('users',UserController::class);
 	Route::resource('resources',ResourceController::class);
 });
+*/
+
+Auth::routes();

@@ -1,0 +1,7 @@
+2021-12-20T09:14:45-03:00 |INFO| Starting arangodb version 0.14.15-1, build fe064e0 component=arangodb
+2021-12-20T09:14:46-03:00 |INFO| Using storage engine 'rocksdb' component=arangodb
+2021-12-20T09:14:46-03:00 |INFO| Serving as master with ID 'a7ac00c8' on :8528... component=arangodb
+2021-12-20T09:14:46-03:00 |INFO| Waiting for 3 servers to show up.
+ component=arangodb
+2021-12-20T09:14:46-03:00 |INFO| Use the following commands to start other servers: component=arangodb
+2021-12-20T09:14:46-03:00 |INFO| ArangoDB Starter listening on 0.0.0.0:8528 (:8528) component=arangodb

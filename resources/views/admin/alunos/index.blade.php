@@ -46,7 +46,7 @@ Meus Alunos
                 @empty
     
                 <tr>
-                    <td colspan=3>Nenhum aluno encontrado</td>
+                    <td colspan=12>Nenhum aluno encontrado</td>
                 </tr>        
     
                 @endforelse

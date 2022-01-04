@@ -41,15 +41,14 @@ Atualizar Aluno
     
 
         <div class="form-group">
-            <label>Sexo</label>
-            <input type="text" class="form-control @error('sexo') is-invalid @enderror" name="sexo" value="{{$aluno->sexo}}">
-            @error('sexo')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
+            <label > Sexo</label>
+            <select class="form-control" name="sexo_id" required >
+                <option value="{{ $aluno->sexo_id}}">Selecione o Sexo do Aluno   </option>
+                @foreach($sexos as $sexo)
+                <option value="{{ $sexo->id }}" {{$aluno->sexo_id == $sexo->id  ? 'selected' : ''}}>{{ $sexo->sexo}}</option>
+                @endforeach
+            </select>
         </div>
-
         <div class="form-group">
             <label>Email </label>
             <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$aluno->email}}">

@@ -26,7 +26,7 @@ class AlunoRequest extends FormRequest
         return [
             'cpf'=> 'required',
             'nome'=> 'required',
-            'sexo'=> 'required',
+            'sexo_id'=> 'required',
             'email'=> 'required',
             //'slug'=> 'required',
             'telefone'=> 'required',
