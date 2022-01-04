@@ -14,8 +14,8 @@ class Alojamento extends Model
 
     'descricao_alojamento',
     'nro_aptos',
-    'user_id', 	
-    'responsavel'
+    'user_id'	
+    
 ];
 
 
@@ -23,7 +23,7 @@ public function apartamento(){
     return $this->belongsTo(Apartamento::class);    
 }
 
-public function sexo(){
+public function user(){
     return $this->hasOne(User::class); //user_id
   }
 
