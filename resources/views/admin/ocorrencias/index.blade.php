@@ -20,7 +20,7 @@ Minhas Ocorrências
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Alunos Envolvidos</th>
+                    <th>Aluno Envolvido</th>
                     <th>Data da Ocorrência</th>
                     <th>Descrição da Ocorrência</th>
                     <th width="16%">Ações</th>
@@ -31,7 +31,7 @@ Minhas Ocorrências
                      
                 <tr>
                     <td>{{$ocorrencia->id}} </td>
-                    <td>{{$ocorrencia->alunos_envolvidos}}</td>
+                    <td>{{$ocorrencia->aluno_id}}</td>
                     <td>{{$ocorrencia->data_ocorrencia->format('d/m/Y')}}</td>
                     <td>{{$ocorrencia->descricao_ocorrencia}} </td>
                     <td class="d-flex justify-content-between"><a href="{{route('admin.ocorrencias.edit',$ocorrencia->id)}}" class="btn btn-warning">Editar</a>
@@ -47,7 +47,7 @@ Minhas Ocorrências
                 @empty
     
                 <tr>
-                    <td colspan=3>Nenhuma ocorrencia encontrada</td>
+                    <td colspan=12>Nenhuma ocorrencia encontrada</td>
                 </tr>        
     
                 @endforelse

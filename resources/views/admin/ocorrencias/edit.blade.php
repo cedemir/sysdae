@@ -19,9 +19,9 @@ Atualizar Ocorrência
         @method("PUT")
 
         <div class="form-group">
-            <label>Alunos Envolvidos</label>
-            <input type="text" class="form-control @error('alunos_envolvidos') is-invalid @enderror" name="alunos_envolvidos" value="{{$ocorrencia->alunos_envolvidos}}">
-            @error('alunos_envolvidos')
+            <label>Aluno Envolvido</label>
+            <input type="text" class="form-control @error('aluno_id') is-invalid @enderror" name="aluno_id" value="{{$ocorrencia->aluno_id}}">
+            @error('aluno_id')
             <div class="alert alert-danger">
                 {{$message}}
             </div>
