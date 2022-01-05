@@ -19,13 +19,14 @@ Atualizar Ocorrência
         @method("PUT")
 
         <div class="form-group">
-            <label>Aluno Envolvido</label>
-            <input type="text" class="form-control @error('aluno_id') is-invalid @enderror" name="aluno_id" value="{{$ocorrencia->aluno_id}}">
-            @error('aluno_id')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
+            <label > Aluno Envolvido</label>
+            <select class="form-control" name="aluno_id" id="aluno_id" required>
+                <option value=""> Selecione o Aluno</option>
+                @foreach($alunos as $aluno)
+                    <option value="{{ $aluno->id}}"> {{ $aluno->nome}}</option>
+                @endforeach
+            </select>
+            
         </div>
 
 
@@ -88,7 +89,6 @@ Atualizar Ocorrência
     <script>
         let el = document.querySelector('input[name=data_ocorrencia]');
         let e2 = document.querySelector('input[name=data_reuniao_conselho_disciplinar]');
-
         let im = new Inputmask('99/99/9999');
         let im2 = new Inputmask('99/99/9999');
         im.mask(el);
