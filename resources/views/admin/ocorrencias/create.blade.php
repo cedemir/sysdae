@@ -18,13 +18,14 @@ Cadastrar Ocorrência
         @csrf <input type="hidden" name="_token" value="{{csrf_token()}}">
 
         <div class="form-group">
-            <label>Alunos Envolvidos</label>
-            <input type="text" class="form-control @error('alunos_envolvidos') is-invalid @enderror" name="alunos_envolvidos">
-            @error('alunos_envolvidos')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
+            <label > Aluno Envolvido</label>
+            <select class="form-control" name="aluno_id" id="aluno_id" required>
+                <option value=""> Selecione o Aluno</option>
+                @foreach($alunos as $aluno)
+                    <option value="{{ $aluno->id}}"> {{ $aluno->nome}}</option>
+                @endforeach
+            </select>
+            
         </div>
 
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Ocorrencia;
 use App\Http\Requests\OcorrenciaRequest;
+use App\Models\Aluno;
 
 class OcorrenciaController extends Controller
 {
@@ -16,13 +17,13 @@ class OcorrenciaController extends Controller
 
     public function index(){
         $ocorrencias= Ocorrencia::paginate(10); 
-        
-        return view('admin.ocorrencias.index', compact('ocorrencias'));
+        $alunos=Aluno::all();
+        return view('admin.ocorrencias.index', compact('ocorrencias','alunos'));
     }
 
     public function create(){
-        
-        return view('admin.ocorrencias.create');
+        $alunos=Aluno::all();
+        return view('admin.ocorrencias.create',compact('alunos'));
 
     }
 
