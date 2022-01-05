@@ -11,7 +11,7 @@ class Ocorrencia extends Model
     //id 	
     protected $table='ocorrencia';
     protected $fillable=[
-    'alunos_envolvidos',
+    'aluno_id',
     'data_ocorrencia',
     'descricao_ocorrencia',	
     'data_reuniao_conselho_disciplinar',

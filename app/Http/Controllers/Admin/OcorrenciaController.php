@@ -27,11 +27,12 @@ class OcorrenciaController extends Controller
 
     }
 
-    public function store(ocorrenciaRequest $request){
+    public function store(OcorrenciaRequest $request){
        
-        $ocorrencia=request()->all();
         
-        ocorrencia::create($ocorrencia);
+        $ocorrencia=request()->all();
+        //Aluno::create($aluno);
+        Ocorrencia::create($ocorrencia);
         return redirect()->route('admin.ocorrencias.index');
         //return redirect()->to('/admin/ocorrencias');
     }
