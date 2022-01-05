@@ -25,7 +25,7 @@ class OcorrenciaRequest extends FormRequest
     {
         return [
             
-            'alunos_envolvidos' =>'required',
+            'aluno_id' =>'required',
             'data_ocorrencia' =>'required',
             'descricao_ocorrencia' =>'required',
             'data_reuniao_conselho_disciplinar' =>'required',
