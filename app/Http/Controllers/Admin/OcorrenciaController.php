@@ -37,10 +37,10 @@ class OcorrenciaController extends Controller
     }
 
     public function edit($ocorrencia){
-
+        $alunos=Aluno::all();
         $ocorrencia=Ocorrencia::findOrFail($ocorrencia);
 
-        return view('admin.ocorrencias.edit',compact('ocorrencia'));
+        return view('admin.ocorrencias.edit',compact('ocorrencia','alunos'));
 
     }
 
