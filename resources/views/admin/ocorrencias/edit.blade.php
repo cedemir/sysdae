@@ -18,17 +18,17 @@ Atualizar Ocorrência
         @csrf <input type="hidden" name="_token" value="{{csrf_token()}}">
         @method("PUT")
 
+        
+
         <div class="form-group">
             <label > Aluno Envolvido</label>
-            <select class="form-control" name="aluno_id" id="aluno_id" required>
-                <option value=""> Selecione o Aluno</option>
+            <select class="form-control" name="aluno_id" required >
+                <option value="{{ $ocorrencia->aluno_id}}">Selecione o Aluno   </option>
                 @foreach($alunos as $aluno)
-                    <option value="{{ $aluno->id}}"> {{ $aluno->nome}}</option>
+                <option value="{{ $aluno->id }}" {{$ocorrencia->aluno_id == $aluno->id  ? 'selected' : ''}}>{{ $aluno->nome}}</option>
                 @endforeach
             </select>
-            
         </div>
-
 
         <div class="form-group">
             <label>Data da Ocorrência </label>
