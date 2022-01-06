@@ -25,7 +25,7 @@ Meus Atendimentos
                     <th>Aluno</th>
                     <th>Servidor Responsável</th>
                     <th>Forma Atendimento</th>
-                    <th>Relato Atendimento</th>
+                    
                     <th>Ações</th>
                 </tr>
             </thead>
