@@ -7,6 +7,8 @@ use App\Models\Ocorrencias_atividades_orientadas;
 use App\Models\Ocorrencia;
 use App\Models\Setor;
 use App\Http\Requests\OcorrenciasAtividadesOrientadasRequest;
+use App\Models\Aluno;
+
 class Ocorrencias_atividades_orientadasController extends Controller
 {
    
@@ -20,8 +22,11 @@ class Ocorrencias_atividades_orientadasController extends Controller
     public function create(){
         $ocorrencias=Ocorrencia::all();
         $setores=Setor::all();
+        $alunos=Aluno::all();
+        $users=Setor::all();
 
-        return view('admin.ocorrencias_atividades_orientadas.create', compact('ocorrencias','setores'));
+
+        return view('admin.ocorrencias_atividades_orientadas.create', compact('ocorrencias','setores','alunos','users'));
 
     }
 
@@ -37,11 +42,14 @@ class Ocorrencias_atividades_orientadasController extends Controller
     public function edit($ocorrencias_atividades_orientadas){
         $ocorrencias=Ocorrencia::all();
         $setores=Setor::all();
+        $alunos=Aluno::all();
+        $users=Setor::all();
+
 
         $ocorrencias_atividades_orientadas=Ocorrencias_atividades_orientadas::findOrFail($ocorrencias_atividades_orientadas);
 
         return view('admin.ocorrencias_atividades_orientadas.edit',
-        compact('ocorrencias_atividades_orientadas','ocorrencias','setores'));
+        compact('ocorrencias_atividades_orientadas','ocorrencias','setores','alunos','users'));
 
     }
 
