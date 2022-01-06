@@ -22,6 +22,7 @@ Meus Atendimentos
                     <th>Id</th>
                     <th>Data</th>
                     <th>Hora</th>
+                    <th>Aluno</th>
                     <th>Servidor Responsável</th>
                     <th>Forma Atendimento</th>
                     <th>Relato Atendimento</th>
@@ -36,9 +37,10 @@ Meus Atendimentos
                     <td>{{$atendimento->id}} </td>
                     <td>{{$atendimento->data->format('d/m/Y')}}</td>
                     <td>{{$atendimento->hora}}</td>
+                    <td>{{$atendimento->aluno_id}}</td>
                     <td>{{$atendimento->user_id}}</td>
                     <td>{{$forma_atendimento->forma_atendimento}}</td>
-                    <td>{{$atendimento->relato_atendimento}}</td>
+                    
                     <td><a href="{{route('admin.atendimentos.edit',$atendimento->id)}}" class="btn btn-warning">Editar</a>
                         <a href="{{route('admin.atendimentos.destroy',$atendimento->id)}}" class="btn btn-danger">Excluir</a>
                     </td>
@@ -46,7 +48,7 @@ Meus Atendimentos
                 @empty
     
                 <tr>
-                    <td colspan=3>Nenhum atendimento encontrado</td>
+                    <td colspan=12>Nenhum atendimento encontrado</td>
                 </tr>        
     
                 @endforelse
