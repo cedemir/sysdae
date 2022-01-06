@@ -57,6 +57,16 @@ Cadastrar Atividade Orientada
             </select>
         </div>
     
+        <div class="form-group">
+            <label>Descrição da Atividade</label>
+            <textarea class="form-control @error('descricao_atividade') is-invalid @enderror" name="descricao_atividade" id="descricao_atividade" cols="80" rows="10">{{old('descricao_atividade')}}</textarea>
+            @error('descricao_atividade')
+            <div class="alert alert-danger">
+                {{$message}}
+            </div>
+            @enderror
+            
+        </div>
 
         <div class="form-group">
             <label>Data </label>
