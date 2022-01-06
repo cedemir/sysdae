@@ -54,8 +54,8 @@ Atualizar Atendimento
             <label > Forma de Atendimento</label>
             <select class="form-control" name="atendimento_id" required >
                 <option value="{{ $atendimento->atendimento_id}}">Selecione a Forma de Atendimento   </option>
-                @foreach($forma_atendimentos as $atendiment)
-                <option value="{{ $atendiment->id }}" {{$atendimento->atendimento_id == $atendiment->id  ? 'selected' : ''}}>{{ $atendiment->forma_atendimento}}</option>
+                @foreach($forma_atendimentos as $forma_atendimento)
+                <option value="{{ $forma_atendimento->id }}" {{$atendimento->atendimento_id == $forma_atendimento->id  ? 'selected' : ''}}>{{ $forma_atendimento->forma_atendimento}}</option>
                 @endforeach
             </select>
         </div>
