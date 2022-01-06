@@ -21,9 +21,10 @@ Minhas Atividades Orientadas
                 <tr>
                     <th>Id</th>
                     <th>Descrição da Ocorrência</th>
+                    <th>Aluno</th>
                     <th>Nome do Setor</th>
                     <th>Servidor</th>
-                    <th>Horas</th>
+                    <th>Horas umpridas</th>
                     <th width="16%">Ações</th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@ Minhas Atividades Orientadas
                 <tr>
                     <td>{{$ocorrencias_atividades_orientada->id}} </td>
                     <td>{{$ocorrencia->descricao_ocorrencia}}</td>
+                    <td>{{$setor->aluno_id}}</td>
                     <td>{{$setor->setor}}</td>
                     <td>{{$ocorrencias_atividades_orientada->servidor}}</td>
                     <td>{{$ocorrencias_atividades_orientada->nro_horas}} </td>
