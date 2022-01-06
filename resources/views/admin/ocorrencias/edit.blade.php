@@ -62,8 +62,8 @@ Atualizar Ocorrência
         </div>
 
         <div class="form-group">
-            <label>Medidas </label>
-            <input type="text" class="form-control @error('medidas') is-invalid @enderror" name="medidas" value="{{$ocorrencia->medidas}}" >
+            <label>Medidas</label>
+            <textarea class="form-control @error('medidas') is-invalid @enderror" name="medidas" id="medidas" cols="80" rows="10">{{$ocorrencia->medidas}}</textarea>
             @error('medidas')
             <div class="alert alert-danger">
                 {{$message}}
@@ -71,6 +71,8 @@ Atualizar Ocorrência
             @enderror
         </div>
 
+
+        
         <div class="form-group">
             <label>Total de Horas Recebidas </label>
             <input type="numeric" class="form-control @error('total_horas_recebidas') is-invalid @enderror" name="total_horas_recebidas" value="{{$ocorrencia->total_horas_recebidas}}">
