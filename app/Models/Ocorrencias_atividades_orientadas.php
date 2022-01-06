@@ -16,7 +16,7 @@ class Ocorrencias_atividades_orientadas extends Model
     'user_id',
     'setor_id',
     'data',
-    
+    'descricao_atividade',
     'nro_horas'];
 
     protected $dates=['data'];

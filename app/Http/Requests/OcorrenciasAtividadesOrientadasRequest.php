@@ -25,7 +25,7 @@ class OcorrenciasAtividadesOrientadasRequest extends FormRequest
                 'setor_id'=> 'required',
                 'aluno_id'=> 'required',
                 'user_id'=> 'required',
-                'servidor'=> 'required',
+                'descricao_atividade'=> 'required',
                 'nro_horas'=> 'required'
             
 
