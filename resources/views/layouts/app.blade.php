@@ -219,6 +219,8 @@
                         </a>
                     </li>
 
+
+                    <!--
                     <li class="nav-item">
                         <a class="nav-link active" href={{route('admin.medidas_disciplinares.index')}}>
                             <span data-feather="file"></span>
@@ -226,6 +228,7 @@
                         </a>
                     </li>
 
+                -->
                     <li class="nav-item">
                         <a class="nav-link active" href={{route('admin.ocorrencias.index')}}>
                             <span data-feather="file"></span>
