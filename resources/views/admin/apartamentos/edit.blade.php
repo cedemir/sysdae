@@ -31,11 +31,11 @@ Atualizar Apartamento
         </div>
     
         <div class="form-group">
-            <label > Alojamento </label>
-            <select class="form-control" name="alojamento_id" id="alojamento_id" required>
-                <option value=""> Selecione o Alojamento </option>
-                @foreach($alojamentos as $alojamento)
-                    <option value="{{ $alojamento->id}}"> {{ $alojamento->descricao_alojamento}}</option>
+            <label > Alojamento</label>
+            <select class="form-control" name="alojamento_id" required >
+                <option value="{{ $apartamento->alojamento_id}}">Selecione o Alojamento  </option>
+                @foreach($alojamentos $alojamento)
+                <option value="{{ $alojamento->id }}" {{$apartamento->alojamento_id == $alojamento->id  ? 'selected' : ''}}>{{ $alojamento->descricao_alojamento}}</option>
                 @endforeach
             </select>
         </div>
