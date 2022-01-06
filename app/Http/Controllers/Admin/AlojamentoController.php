@@ -41,7 +41,7 @@ class AlojamentoController extends Controller
         $users=User::all();
         $alojamento=Alojamento::findOrFail($alojamento);
 
-        return view('admin.alojamentos.edit',compact('alojamento'));
+        return view('admin.alojamentos.edit',compact('alojamento','users'));
 
     }
 
