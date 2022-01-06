@@ -37,12 +37,12 @@ class AtendimentoController extends Controller
     public function edit($atendimento){
 
         $forma_atendimentos= Forma_atendimento::all(); 
-        
+        $users=User::all();
 
         $atendimento=Atendimento::findOrFail($atendimento);
 
 
-        return view('admin.atendimentos.edit',compact('atendimento','forma_atendimentos'));
+        return view('admin.atendimentos.edit',compact('atendimento','forma_atendimentos','users'));
 
     }
 
