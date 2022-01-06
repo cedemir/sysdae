@@ -84,7 +84,7 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
 
 
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route::get('residentes',     [App\Http\Controllers\Admin\ResidentesController::class, 'showResidentes'])->name('residentes');
 //Route::get('residentes_pdf', [App\Http\Controllers\Admin\ResidentesController::class, 'createPDF'])->name('residentes_pdf');

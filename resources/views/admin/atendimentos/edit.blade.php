@@ -39,6 +39,15 @@ Atualizar Atendimento
             @enderror
         </div>
     
+        <div class="form-group">
+            <label > Aluno</label>
+            <select class="form-control" name="aluno_id" required >
+                <option value="{{ $atendimento->aluno_id}}">Selecione o Aluno   </option>
+                @foreach($alunos as $aluno)
+                <option value="{{ $aluno->id }}" {{$atendimento->aluno_id == $aluno->id  ? 'selected' : ''}}>{{ $aluno->nome}}</option>
+                @endforeach
+            </select>
+        </div>
 
         <div class="form-group">
             <label > Servidor Responsável</label>
