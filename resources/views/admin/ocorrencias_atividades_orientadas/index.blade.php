@@ -24,7 +24,7 @@ Minhas Atividades Orientadas
                     <th>Aluno</th>
                     <th>Nome do Setor</th>
                     <th>Servidor</th>
-                    <th>Horas umpridas</th>
+                    <th>Horas cumpridas</th>
                     <th width="16%">Ações</th>
                 </tr>
             </thead>
@@ -33,11 +33,12 @@ Minhas Atividades Orientadas
                 <?php
                  $ocorrencia=App\Models\Ocorrencia::where('id','=',$ocorrencias_atividades_orientada->ocorrencia_id)->first();
                  $setor=App\Models\Setor::where('id','=',$ocorrencias_atividades_orientada->setor_id)->first();
+                 $aluno=App\Models\Aluno::where('id','=',$ocorrencias_atividades_orientada->aluno_id)->first();
                 ?>   
                 <tr>
                     <td>{{$ocorrencias_atividades_orientada->id}} </td>
                     <td>{{$ocorrencia->descricao_ocorrencia}}</td>
-                    <td>{{$setor->aluno_id}}</td>
+                    <td>{{$aluno->nome}}</td>
                     <td>{{$setor->setor}}</td>
                     <td>{{$ocorrencias_atividades_orientada->servidor}}</td>
                     <td>{{$ocorrencias_atividades_orientada->nro_horas}} </td>
