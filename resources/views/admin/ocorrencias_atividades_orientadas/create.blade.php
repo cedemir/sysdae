@@ -59,16 +59,6 @@ Cadastrar Atividade Orientada
     
 
         <div class="form-group">
-            <label>Servidor </label>
-            <input type="text" class="form-control @error('servidor') is-invalid @enderror" name="servidor">
-            @error('servidor')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
-        </div>
-
-        <div class="form-group">
             <label>Data </label>
             <input type="text" class="form-control @error('data') is-invalid @enderror" name="data">
             @error('data')
