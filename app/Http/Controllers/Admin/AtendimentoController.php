@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Atendimento;
 use App\Models\Forma_atendimento;
 use App\Http\Requests\AtendimentoRequest;
+use App\Models\Aluno;
 use App\Models\User;
 
 class AtendimentoController extends Controller
@@ -14,14 +15,15 @@ class AtendimentoController extends Controller
     public function index(){
         $atendimentos= Atendimento::paginate(10); 
         $users=User::all();
-        return view('admin.atendimentos.index', compact('atendimentos','users'));
+        $alunos=Aluno::all();
+        return view('admin.atendimentos.index', compact('atendimentos','users','alunos'));
     }
 
     public function create(){
         $forma_atendimentos= Forma_atendimento::all(); 
         $users=User::all();
-        
-        return view('admin.atendimentos.create', compact('forma_atendimentos','users'));
+        $alunos=Aluno::all();
+        return view('admin.atendimentos.create', compact('forma_atendimentos','users','alunos'));
 
     }
 
@@ -38,11 +40,12 @@ class AtendimentoController extends Controller
 
         $forma_atendimentos= Forma_atendimento::all(); 
         $users=User::all();
+        $alunos=Aluno::all();
 
         $atendimento=Atendimento::findOrFail($atendimento);
 
 
-        return view('admin.atendimentos.edit',compact('atendimento','forma_atendimentos','users'));
+        return view('admin.atendimentos.edit',compact('atendimento','forma_atendimentos','users','alunos'));
 
     }
 

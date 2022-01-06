@@ -14,6 +14,7 @@ class Atendimento extends Model
     
     'data',
     'hora', 	
+    'aluno_id',
     'user_id',
     'atendimento_id',
     'relato_atendimento',
@@ -37,4 +38,7 @@ public function users(){
   return $this->hasOne(Users::class); //user_id
 }
 
+public function alunos(){
+  return $this->hasMany(Aluno::class); //aluno_id
+}
 }

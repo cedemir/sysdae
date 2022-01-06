@@ -26,8 +26,10 @@ class AtendimentoRequest extends FormRequest
         return [
             //$location->locacao_dt->format('d/m/Y H:i:s')
             //'data'=>'date_format:d/m/Y|required',
+
             'data'=>'required',
             'hora'=>'required',	
+            'aluno_id'=>'required',
             'user_id'=>'required',
             'relato_atendimento'=>'required',
             'outras_observacoes'=>'required',	

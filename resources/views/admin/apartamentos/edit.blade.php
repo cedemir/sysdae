@@ -34,7 +34,7 @@ Atualizar Apartamento
             <label > Alojamento</label>
             <select class="form-control" name="alojamento_id" required >
                 <option value="{{ $apartamento->alojamento_id}}">Selecione o Alojamento  </option>
-                @foreach($alojamentos $alojamento)
+                @foreach($alojamentos as  $alojamento)
                 <option value="{{ $alojamento->id }}" {{$apartamento->alojamento_id == $alojamento->id  ? 'selected' : ''}}>{{ $alojamento->descricao_alojamento}}</option>
                 @endforeach
             </select>

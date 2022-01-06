@@ -40,6 +40,15 @@ Cadastrar Atendimento
             @enderror
         </div>
     
+        <div class="form-group">
+            <label > Aluno </label>
+            <select class="form-control" name="aluno_id" id="aluno_id" required>
+                <option value=""> Selecione o Aluno  </option>
+                @foreach($alunos as $aluno)
+                    <option value="{{ $aluno->id}}"> {{ $aluno->nome}}</option>
+                @endforeach
+            </select>
+        </div>
 
         <div class="form-group">
             <label > Servidor Responsável </label>
