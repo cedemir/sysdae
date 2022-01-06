@@ -59,7 +59,7 @@ Atualizar Atividade Orientada
             <label > Servidor </label>
             <select class="form-control" name="user_id" id="user_id"  required>
                 <option value=""> Selecione o Servidor</option>
-                @foreach($user as $user)
+                @foreach($users as $user)
                 <option value="{{ $user->id }}" {{$ocorrencias_atividades_orientadas->user_id == $user->id  ? 
                     'selected' : ''}}>{{ $user->name}}</option>
     
