@@ -25,7 +25,7 @@ class ApartamentoRequest extends FormRequest
     {
         return [
             'descricao_apartamento'=>'required',
-            //'alojamento_id'=>'required'
+            'alojamento_id'=>'required'
         ];
     }
 
