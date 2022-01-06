@@ -31,7 +31,10 @@ Meus Atendimentos
             </thead>
             <tbody>
                 @forelse ($atendimentos as $atendimento)
-                <?php $forma_atendimento=App\Models\Forma_atendimento::where('id','=',$atendimento->atendimento_id)->first();
+                <?php 
+                $forma_atendimento=App\Models\Forma_atendimento::where('id','=',$atendimento->atendimento_id)->first();
+                $aluno=App\Models\Aluno::where('id','=',$atendimento->aluno_id)->first();
+                $forma_atendimento=App\Models\Users::where('id','=',$atendimento->user_id)->first();
                  ?> 
                 <tr>
                     <td>{{$atendimento->id}} </td>
