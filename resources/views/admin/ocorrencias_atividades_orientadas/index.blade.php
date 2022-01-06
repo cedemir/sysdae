@@ -34,13 +34,14 @@ Minhas Atividades Orientadas
                  $ocorrencia=App\Models\Ocorrencia::where('id','=',$ocorrencias_atividades_orientada->ocorrencia_id)->first();
                  $setor=App\Models\Setor::where('id','=',$ocorrencias_atividades_orientada->setor_id)->first();
                  $aluno=App\Models\Aluno::where('id','=',$ocorrencias_atividades_orientada->aluno_id)->first();
+                 $user=App\Models\User::where('id','=',$ocorrencias_atividades_orientada->user_id)->first();
                 ?>   
                 <tr>
                     <td>{{$ocorrencias_atividades_orientada->id}} </td>
                     <td>{{$ocorrencia->descricao_ocorrencia}}</td>
                     <td>{{$aluno->nome}}</td>
                     <td>{{$setor->setor}}</td>
-                    <td>{{$ocorrencias_atividades_orientada->servidor}}</td>
+                    <td>{{$user->name}}</td>
                     <td>{{$ocorrencias_atividades_orientada->nro_horas}} </td>
                     <td class="d-flex justify-content-between"><a href="{{route('admin.ocorrencias_atividades_orientadas.edit',$ocorrencias_atividades_orientada->id)}}" class="btn btn-warning">Editar</a>
                         <form action="{{route('admin.ocorrencias_atividades_orientadas.destroy',$ocorrencias_atividades_orientada->id)}}" method="post">
