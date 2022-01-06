@@ -60,15 +60,18 @@ Cadastrar Ocorrência
             @enderror
         </div>
 
+    
+
         <div class="form-group">
-            <label>Medidas </label>
-            <input type="text" class="form-control @error('medidas') is-invalid @enderror" name="medidas">
+            <label>Medidas</label>
+            <textarea class="form-control @error('medidas') is-invalid @enderror" name="medidas" id="medidas" cols="80" rows="10"></textarea>
             @error('medidas')
             <div class="alert alert-danger">
                 {{$message}}
             </div>
             @enderror
         </div>
+
 
         <div class="form-group">
             <label>Total de Horas Recebidas </label>
