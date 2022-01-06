@@ -8,6 +8,7 @@ use App\Models\Ocorrencia;
 use App\Models\Setor;
 use App\Http\Requests\OcorrenciasAtividadesOrientadasRequest;
 use App\Models\Aluno;
+use App\Models\User;
 
 class Ocorrencias_atividades_orientadasController extends Controller
 {
@@ -23,7 +24,7 @@ class Ocorrencias_atividades_orientadasController extends Controller
         $ocorrencias=Ocorrencia::all();
         $setores=Setor::all();
         $alunos=Aluno::all();
-        $users=Setor::all();
+        $users=User::all();
 
 
         return view('admin.ocorrencias_atividades_orientadas.create', compact('ocorrencias','setores','alunos','users'));
