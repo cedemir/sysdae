@@ -12,9 +12,11 @@ class Ocorrencias_atividades_orientadas extends Model
     protected $table='ocorrencias_atividades_orientadas';
     protected $fillable=[
     'ocorrencia_id',
+    'aluno_id',
+    'user_id',
     'setor_id',
     'data',
-    'servidor',
+    
     'nro_horas'];
 
     protected $dates=['data'];
@@ -26,6 +28,14 @@ class Ocorrencias_atividades_orientadas extends Model
     public function setor(){
         return $this->hasMany(Setor::class);
         }
+
+    public function aluno(){
+        return $this->ManyToMany(Aluno::class);
+    }
+
+    public function user(){
+        return $this->ManyToMany(User::class);
+    }
 
 
 }
