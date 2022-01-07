@@ -176,6 +176,26 @@
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a href={{route('admin.alunos.index')}}>Alunos</a></li>
+                          <li><a href={{route('admin.alojamentos.index')}}>Alojamentos</a></li>
+                          <li><a href={{route('admin.apartamentos.index')}}>Apartamentos</a></li>
+                          <li><a href={{route('admin.atendimentos.index')}}>Atendimentos</a></li>
+                          <li><a href={{route('admin.cursos.index')}}>Cursos</a></li>
+                          <li><a href={{route('admin.matriculas.index')}}>Matriculas</a></li>
+                          <li><a href={{route('admin.ocorrencias.index')}}>Ocorrencias</a></li>
+                          <li><a href={{route('admin.ocorrencias_atividades_orientadas.index')}}>Atividades Orientadas</a></li>
+                          <li><a href={{route('admin.ocorrencias_atividades_orientadas.index')}}>Atividades Orientadas</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                        </ul>
+                      </div>
+
+                      <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          Relatórios
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                           <li><a href="#">Action</a></li>
                           <li><a href="#">Another action</a></li>
                           <li><a href="#">Something else here</a></li>
@@ -184,55 +204,27 @@
                         </ul>
                       </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.alunos.index')}}>
-                            <span data-feather="file"></span>
-                            Alunos
-                        </a>
-                    </li>
+                      <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          Cadastros Gerais
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a href={{route('admin.cursos.index')}}>Cursos</a></li>
+                          <li><a href={{route('admin.forma_atendimentos.index')}}>Formas de Atendidmento</a></li>
+                          <li><a href={{route('admin.programa_beneficios.index')}}>Programa de Benefício</a></li>
+                          <li><a href={{route('admin.regime_residencias.index')}}>Regime de Residência</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                        </ul>
+                      </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.alojamentos.index')}}>
-                            <span data-feather="file"></span>
-                            Alojamentos
-                        </a>
-                    </li>
+          
+                    
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.apartamentos.index')}}>
-                            <span data-feather="file"></span>
-                            Apartamentos
-                        </a>
-                    </li>
+                   
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.atendimentos.index')}}>
-                            <span data-feather="file"></span>
-                            Atendimentos
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.cursos.index')}}>
-                            <span data-feather="file"></span>
-                           Cursos
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.forma_atendimentos.index')}}>
-                            <span data-feather="file"></span>
-                            Formas de Atendimento
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.matriculas.index')}}>
-                            <span data-feather="file"></span>
-                            Matriculas
-                        </a>
-                    </li>
-
+                    
 
                     <!--
                     <li class="nav-item">
@@ -244,21 +236,21 @@
 
                 -->
                     <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.ocorrencias.index')}}>
+                        <a class="nav-link active" href=>
                             <span data-feather="file"></span>
                             Ocorrências
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.ocorrencias_atividades_orientadas.index')}}>
+                        <a class="nav-link active" href=>
                             <span data-feather="file"></span>
                            Atividades Orientadas
                         </a>
                     </li>
                    
                     <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.programa_beneficios.index')}}>
+                        <a class="nav-link active" href=>
                             <span data-feather="file"></span>
                            Programa de Benefício
                         </a>
@@ -266,7 +258,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.regime_residencias.index')}}>
+                        <a class="nav-link active" href=>
                             <span data-feather="file"></span>
                            Regime da Residência
                         </a>
