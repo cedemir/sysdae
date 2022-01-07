@@ -26,3 +26,5 @@ How to install and run on your local system
     
     php artisan vendor:publish
     
+    composer require geekcom/validator-docs
+    

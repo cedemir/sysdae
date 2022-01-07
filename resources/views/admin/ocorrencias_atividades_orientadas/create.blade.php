@@ -80,7 +80,7 @@ Cadastrar Atividade Orientada
 
 
         <div class="form-group">
-            <label>Horas C </label>
+            <label>Horas Cumpridas </label>
             <input type="text" class="form-control @error('nro_horas') is-invalid @enderror" name="nro_horas">
             @error('nro_horas')
             <div class="alert alert-danger">

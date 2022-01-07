@@ -38,6 +38,10 @@ class AlunoController extends Controller
     public function store(AlunoRequest $request){
         //$this->authorize('admin.alunos.store');
         $aluno=request()->all();
+        $this->validate($request, [
+            'cpf' => 'required|cpf',
+            
+        ]);
         $aluno['slug']=Str::slug($aluno['cpf']);
         Aluno::create($aluno);
         return redirect()->route('admin.alunos.index');

@@ -184,9 +184,10 @@
                           <li><a href={{route('admin.matriculas.index')}}>Matriculas</a></li>
                           <li><a href={{route('admin.ocorrencias.index')}}>Ocorrencias</a></li>
                           <li><a href={{route('admin.ocorrencias_atividades_orientadas.index')}}>Atividades Orientadas</a></li>
-                          <li><a href={{route('admin.ocorrencias_atividades_orientadas.index')}}>Atividades Orientadas</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
+                          <li><a href={{route('admin.residencias.index')}}>Residência Estudantil</a></li>
+                          <li><a href={{route('admin.residencia_autorizacoes.index')}}>Autorizações de Saída</a></li>
+                          <li><a href={{route('admin.residencia_faltas.index')}}>Faltas na Residencia</a></li>
+                          
                         </ul>
                       </div>
 
@@ -195,12 +196,12 @@
                           Relatórios
                           <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <li><a href={{route('users.index')}}>Usuários</a></li>
+                          <li><a href={{route('residentes.index')}}>Total de Residentes</a></li>
+                          <li><a href={{route('semirresidentes.index')}}>Total de Semirresidentes</a></li>
+                          
+                          
                         </ul>
                       </div>
 
@@ -209,113 +210,18 @@
                           Cadastros Gerais
                           <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
                           <li><a href={{route('admin.cursos.index')}}>Cursos</a></li>
-                          <li><a href={{route('admin.forma_atendimentos.index')}}>Formas de Atendidmento</a></li>
+                          <li><a href={{route('admin.forma_atendimentos.index')}}>Formas de Atendimento</a></li>
                           <li><a href={{route('admin.programa_beneficios.index')}}>Programa de Benefício</a></li>
                           <li><a href={{route('admin.regime_residencias.index')}}>Regime de Residência</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
+                          <li><a href={{route('admin.series.index')}}>Séries</a></li>
+                          <li><a href={{route('admin.setores.index')}}>Setores</a></li>
+                          <li><a href={{route('admin.situacao_alunos.index')}}>Situação dos Alunos</a></li>
+                          <li><a href={{route('admin.turmas.index')}}>Turmas</a></li>
+                          
                         </ul>
-                      </div>
-
-          
-                    
-
-                   
-
-                    
-
-                    <!--
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.medidas_disciplinares.index')}}>
-                            <span data-feather="file"></span>
-                            Medidas Disciplinares
-                        </a>
-                    </li>
-
-                -->
-                    <li class="nav-item">
-                        <a class="nav-link active" href=>
-                            <span data-feather="file"></span>
-                            Ocorrências
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href=>
-                            <span data-feather="file"></span>
-                           Atividades Orientadas
-                        </a>
-                    </li>
-                   
-                    <li class="nav-item">
-                        <a class="nav-link active" href=>
-                            <span data-feather="file"></span>
-                           Programa de Benefício
-                        </a>
-               
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href=>
-                            <span data-feather="file"></span>
-                           Regime da Residência
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.residencias.index')}}>
-                            <span data-feather="file"></span>
-                           Residência Estudantil
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.residencia_autorizacoes.index')}}>
-                            <span data-feather="file"></span>
-                           Autorizações de Saída da Residência Estudantil
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.residencia_faltas.index')}}>
-                            <span data-feather="file"></span>
-                        Faltas na Residência Estudantil
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.series.index')}}>
-                            <span data-feather="file"></span>
-                        Séries
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.setores.index')}}>
-                            <span data-feather="file"></span>
-                        Setores
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.situacao_alunos.index')}}>
-                            <span data-feather="file"></span>
-                        Situacao Dos Alunos
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{route('admin.turmas.index')}}>
-                            <span data-feather="file"></span>
-                        Turmas
-                        </a>
-                    </li>
-
-
-
-
+                      </div>                   
                 </ul>
             </div>
         </nav>
