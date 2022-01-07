@@ -11,10 +11,12 @@ CREATE TABLE `alojamento` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `descricao_alojamento` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nro_aptos` int(11) NOT NULL,
-  `responsavel` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `alojamento_user_id` (`user_id`),
+  CONSTRAINT `alojamento_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `aluno`;
@@ -24,7 +26,7 @@ CREATE TABLE `aluno` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `cpf` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nome` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sexo` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sexo_id` bigint(20) unsigned NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telefone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -42,7 +44,9 @@ CREATE TABLE `aluno` (
   PRIMARY KEY (`id`),
   KEY `aluno_programa_beneficio_id_foreign` (`beneficio_id`),
   KEY `aluno_situacao_id_foreign` (`situacao_id`),
+  KEY `aluno_sexo_id_foreign` (`sexo_id`),
   CONSTRAINT `aluno_programa_beneficio_id_foreign` FOREIGN KEY (`beneficio_id`) REFERENCES `programa_beneficio` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `aluno_sexo_id_foreign` FOREIGN KEY (`sexo_id`) REFERENCES `sexo` (`id`) ON DELETE CASCADE,
   CONSTRAINT `aluno_situacao_id_foreign` FOREIGN KEY (`situacao_id`) REFERENCES `situacao_aluno` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -80,7 +84,8 @@ CREATE TABLE `atendimento` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `servidores_responsaveis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `aluno_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
   `atendimento_id` bigint(20) unsigned NOT NULL,
   `relato_atendimento` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `outras_observacoes` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -90,7 +95,11 @@ CREATE TABLE `atendimento` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `atendimento_id_forma_atendimento_foreign` (`atendimento_id`),
-  CONSTRAINT `atendimento_id_forma_atendimento_foreign` FOREIGN KEY (`atendimento_id`) REFERENCES `forma_atendimento` (`id`) ON DELETE CASCADE
+  KEY `atendimento_user_id` (`user_id`),
+  KEY `atendimento_aluno_id` (`aluno_id`),
+  CONSTRAINT `atendimento_aluno_id` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `atendimento_id_forma_atendimento_foreign` FOREIGN KEY (`atendimento_id`) REFERENCES `forma_atendimento` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `atendimento_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `curso`;
@@ -194,15 +203,17 @@ DROP TABLE IF EXISTS `ocorrencia`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ocorrencia` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `alunos_envolvidos` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `aluno_id` bigint(20) unsigned NOT NULL,
   `data_ocorrencia` date NOT NULL,
   `descricao_ocorrencia` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_reuniao_conselho_disciplinar` date NOT NULL,
-  `medidas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medidas` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_horas_recebidas` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `ocorrencia_aluno_id` (`aluno_id`),
+  CONSTRAINT `ocorrencia_aluno_id` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `ocorrencias_atividades_orientadas`;
@@ -211,8 +222,10 @@ DROP TABLE IF EXISTS `ocorrencias_atividades_orientadas`;
 CREATE TABLE `ocorrencias_atividades_orientadas` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `ocorrencia_id` bigint(20) unsigned NOT NULL,
+  `aluno_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
   `setor_id` bigint(20) unsigned NOT NULL,
-  `servidor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descricao_atividade` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `data` date NOT NULL,
   `nro_horas` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -220,8 +233,12 @@ CREATE TABLE `ocorrencias_atividades_orientadas` (
   PRIMARY KEY (`id`),
   KEY `ocorrencias_atividades_orientadas_id_ocorrencia_foreign` (`ocorrencia_id`),
   KEY `ocorrencias_atividades_orientadas_id_setor_foreign` (`setor_id`) USING BTREE,
+  KEY `ocorrencias_aluno_id` (`aluno_id`),
+  KEY `ocorrencias_user_id` (`user_id`),
+  CONSTRAINT `ocorrencias_aluno_id` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`) ON DELETE CASCADE,
   CONSTRAINT `ocorrencias_atividades_orientadas_id_ocorrencia_foreign` FOREIGN KEY (`ocorrencia_id`) REFERENCES `ocorrencia` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `ocorrencias_atividades_orientadas_id_setor_foreign` FOREIGN KEY (`setor_id`) REFERENCES `setor` (`id`) ON DELETE CASCADE
+  CONSTRAINT `ocorrencias_atividades_orientadas_id_setor_foreign` FOREIGN KEY (`setor_id`) REFERENCES `setor` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `ocorrencias_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `password_resets`;
@@ -327,6 +344,14 @@ CREATE TABLE `residencia_faltas` (
   CONSTRAINT `residencia_faltas_aluno_id` FOREIGN KEY (`aluno_id`) REFERENCES `aluno` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `residentes`;
+/*!50001 DROP VIEW IF EXISTS `residentes`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `residentes` (
+  `TotalResidentes` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `resource_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -364,6 +389,55 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `semirresidentes`;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `semirresidentes` (
+  `TotalSemiResidentes` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `semirresidentes5`;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes5`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `semirresidentes5` (
+  `sexo` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `nome` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `semirresidentes8`;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes8`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `semirresidentes8` (
+  `id` tinyint NOT NULL,
+  `sexo_id` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `nome` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `semirresidentes9`;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes9`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `semirresidentes9` (
+  `sexo_id` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `nome` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `semirresidentes_sexo`;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes_sexo`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `semirresidentes_sexo` (
+  `sexo` tinyint NOT NULL,
+  `email` tinyint NOT NULL,
+  `nome` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `serie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -386,6 +460,15 @@ CREATE TABLE `setor` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `sexo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sexo` (
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sexo` varchar(60) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `situacao_aluno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -397,6 +480,33 @@ CREATE TABLE `situacao_aluno` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `totalApto`;
+/*!50001 DROP VIEW IF EXISTS `totalApto`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `totalApto` (
+  `apto` tinyint NOT NULL,
+  `totalApto` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `totalCurso2021`;
+/*!50001 DROP VIEW IF EXISTS `totalCurso2021`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `totalCurso2021` (
+  `descricao_curso` tinyint NOT NULL,
+  `totalCurso` tinyint NOT NULL,
+  `ano` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+DROP TABLE IF EXISTS `totalMatriculados2021`;
+/*!50001 DROP VIEW IF EXISTS `totalMatriculados2021`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `totalMatriculados2021` (
+  `TotalAlunos` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `turma`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -427,6 +537,155 @@ CREATE TABLE `users` (
   CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 DROP PROCEDURE IF EXISTS `TotalAlunosPorAno` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TotalAlunosPorAno`(in varAno int)
+BEGIN
+	SELECT COUNT(matricula.matricula) AS TotalAlunos
+FROM        matricula
+inner join  residencia         on residencia.aluno_id=matricula.aluno_id
+inner join  regimes_residencia on  residencia.regime_residencia_id= regimes_residencia.id
+where       matricula.ano=varAno ;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50001 DROP TABLE IF EXISTS `residentes`*/;
+/*!50001 DROP VIEW IF EXISTS `residentes`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `residentes` AS select count(`aluno`.`id`) AS `TotalResidentes` from ((`aluno` join `residencia` on(`residencia`.`aluno_id` = `aluno`.`id`)) join `regimes_residencia` on(`residencia`.`regime_residencia_id` = `regimes_residencia`.`id` and `regimes_residencia`.`descricao_regime` = 'Residente')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP TABLE IF EXISTS `semirresidentes`*/;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `semirresidentes` AS select count(`aluno`.`id`) AS `TotalSemiResidentes` from ((`aluno` join `residencia` on(`residencia`.`aluno_id` = `aluno`.`id`)) join `regimes_residencia` on(`residencia`.`regime_residencia_id` = `regimes_residencia`.`id` and `regimes_residencia`.`descricao_regime` = 'Semirresidente')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP TABLE IF EXISTS `semirresidentes5`*/;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes5`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `semirresidentes5` AS select `sexo`.`sexo` AS `sexo`,`aluno`.`email` AS `email`,`aluno`.`nome` AS `nome` from (((`aluno` join `residencia` on(`residencia`.`aluno_id` = `aluno`.`id`)) join `sexo` on(`aluno`.`sexo_id` = `sexo`.`id`)) join `regimes_residencia` on(`residencia`.`regime_residencia_id` = `regimes_residencia`.`id` and `regimes_residencia`.`descricao_regime` = 'Semirresidente')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP TABLE IF EXISTS `semirresidentes8`*/;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes8`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `semirresidentes8` AS select distinct `aluno`.`id` AS `id`,`aluno`.`sexo_id` AS `sexo_id`,`aluno`.`email` AS `email`,`aluno`.`nome` AS `nome` from (((`aluno` join `residencia` on(`residencia`.`aluno_id` = `aluno`.`id`)) join `sexo` on(`aluno`.`sexo_id` = `sexo`.`id`)) join `regimes_residencia` on(`residencia`.`regime_residencia_id` = `regimes_residencia`.`id` and `regimes_residencia`.`descricao_regime` = 'Semirresidente')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP TABLE IF EXISTS `semirresidentes9`*/;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes9`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `semirresidentes9` AS select `aluno`.`sexo_id` AS `sexo_id`,`aluno`.`email` AS `email`,`aluno`.`nome` AS `nome` from (((`aluno` join `residencia` on(`residencia`.`aluno_id` = `aluno`.`id`)) join `sexo` on(`aluno`.`sexo_id` = `sexo`.`id`)) join `regimes_residencia` on(`residencia`.`regime_residencia_id` = `regimes_residencia`.`id` and `regimes_residencia`.`descricao_regime` = 'Semirresidente')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP TABLE IF EXISTS `semirresidentes_sexo`*/;
+/*!50001 DROP VIEW IF EXISTS `semirresidentes_sexo`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `semirresidentes_sexo` AS select `sexo`.`sexo` AS `sexo`,`aluno`.`email` AS `email`,`aluno`.`nome` AS `nome` from (((`aluno` join `residencia` on(`residencia`.`aluno_id` = `aluno`.`id`)) join `sexo` on(`aluno`.`sexo_id` = `sexo`.`id`)) join `regimes_residencia` on(`residencia`.`regime_residencia_id` = `regimes_residencia`.`id` and `regimes_residencia`.`descricao_regime` = 'Semirresidente')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP TABLE IF EXISTS `totalApto`*/;
+/*!50001 DROP VIEW IF EXISTS `totalApto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `totalApto` AS select `residencia`.`apto` AS `apto`,count(`residencia`.`apto`) AS `totalApto` from ((`residencia` join `aluno` on(`residencia`.`aluno_id` = `aluno`.`id`)) join `regimes_residencia` on(`residencia`.`regime_residencia_id` = `regimes_residencia`.`id`)) group by `residencia`.`apto` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP TABLE IF EXISTS `totalCurso2021`*/;
+/*!50001 DROP VIEW IF EXISTS `totalCurso2021`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `totalCurso2021` AS select `curso`.`descricao_curso` AS `descricao_curso`,count(`matricula`.`curso_id`) AS `totalCurso`,`matricula`.`ano` AS `ano` from ((`matricula` join `aluno` on(`matricula`.`aluno_id` = `aluno`.`id`)) join `curso` on(`matricula`.`curso_id` = `curso`.`id`)) where `matricula`.`ano` = 2021 group by `curso`.`descricao_curso` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!50001 DROP TABLE IF EXISTS `totalMatriculados2021`*/;
+/*!50001 DROP VIEW IF EXISTS `totalMatriculados2021`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `totalMatriculados2021` AS select count(`matricula`.`matricula`) AS `TotalAlunos` from ((`matricula` join `residencia` on(`residencia`.`aluno_id` = `matricula`.`aluno_id`)) join `regimes_residencia` on(`residencia`.`regime_residencia_id` = `regimes_residencia`.`id`)) where `matricula`.`ano` = 2021 */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
