@@ -9,7 +9,7 @@ Cadastrar Atividade Orientada
 
 
 @section('content')
-<div class="col-12 my-8 mx-4">
+<div class="col-12 my-5">
 <h2>Cadastrar Atividade Orientada</h2>
 </div>
 
@@ -80,7 +80,7 @@ Cadastrar Atividade Orientada
 
 
         <div class="form-group">
-            <label>Horas Cumpridas </label>
+            <label>Horas C </label>
             <input type="text" class="form-control @error('nro_horas') is-invalid @enderror" name="nro_horas">
             @error('nro_horas')
             <div class="alert alert-danger">
