@@ -9,7 +9,7 @@ Cadastrar Atividade Orientada
 
 
 @section('content')
-<div class="col-12 my-5">
+<div class="col-12 my-8">
 <h2>Cadastrar Atividade Orientada</h2>
 </div>
 
