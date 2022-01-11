@@ -180,12 +180,11 @@
                           <li><a href={{route('admin.alojamentos.index')}}>Alojamentos</a></li>
                           <li><a href={{route('admin.apartamentos.index')}}>Apartamentos</a></li>
                           <li><a href={{route('admin.atendimentos.index')}}>Atendimentos</a></li>
-                          <li><a href={{route('admin.cursos.index')}}>Cursos</a></li>
                           <li><a href={{route('admin.matriculas.index')}}>Matriculas</a></li>
                           <li><a href={{route('admin.ocorrencias.index')}}>Ocorrencias</a></li>
                           <li><a href={{route('admin.ocorrencias_atividades_orientadas.index')}}>Atividades Orientadas</a></li>
                           <li><a href={{route('admin.residencias.index')}}>Residência Estudantil</a></li>
-                          <li><a href={{route('admin.residencia_autorizacoes.index')}}>Autorizações de Saída</a></li>
+                          <!-- <li><a href={{route('admin.residencia_autorizacoes.index')}}>Autorizações de Saída</a></li> -->
                           <li><a href={{route('admin.residencia_faltas.index')}}>Faltas na Residencia</a></li>
                           
                         </ul>
@@ -200,6 +199,7 @@
                           <li><a href={{route('users.index')}}>Usuários</a></li>
                           <li><a href={{route('residentes.index')}}>Total de Residentes</a></li>
                           <li><a href={{route('semirresidentes.index')}}>Total de Semirresidentes</a></li>
+                          <li><a href={{route('ocorrencias.index')}}>Ocorrências</a></li>
                           
                           
                         </ul>

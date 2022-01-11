@@ -92,6 +92,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('users','App\Http\Controllers\UserController');
 Route::resource('residentes','App\Http\Controllers\ResidentesController');
 Route::resource('semirresidentes','App\Http\Controllers\SemirresidentesController');
+Route::resource('ocorrencias','App\Http\Controllers\OcorrenciaReportController');
 
 Route::get('totalAlunos', function () {
 
