@@ -32,7 +32,7 @@
       @foreach ($ocorrencias as $ocorrencia)
       <tr>
         <td>{{ $ocorrencia->aluno_id }}</td>
-        <td>{{ $ocorrencia->data_correncia->format('d/m/Y') }}</td>
+        <td>{{ $ocorrencia->data_ocorrencia->format('d/m/Y') }}</td>
         <td>{{ $ocorrencia->descricao_ocorrencia }}</td>
         <td>{{ $ocorrencia->data_reuniao_conselho_disciplinar}}</td>
         <td>{{ $ocorrencia->medidas}}</td>
