@@ -10,7 +10,7 @@ Atualizar Faltas na Residência Estudantil
 
 @section('content')
 <div class="col-12 my-5">
-<h2>AAtualizar Faltas na Residência Estudantil</h2>
+<h2>Atualizar Faltas na Residência Estudantil</h2>
 </div>
 
 <div class="col-12">
