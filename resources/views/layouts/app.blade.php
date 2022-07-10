@@ -7,7 +7,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
     <title>@yield('title') Administração</title>
-
+    @livewireStyles
     <link rel="canonical" href="http://127.0.0.1:8000">
 
     <!-- Bootstrap core CSS -->
@@ -235,5 +235,6 @@
 </div>
 <script src="{{asset('js/app.js')}}"></script> 
 @yield('scripts')
+@livewireScripts
 </body>
 </html>
