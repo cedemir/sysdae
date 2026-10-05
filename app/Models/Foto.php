@@ -15,4 +15,9 @@ class Foto extends Model
     {
         return $this->belongsTo(Aluno::class); //aluno_id
     }
+
+    public function getUrlAttribute()
+    {
+        return asset('storage/'.$this->foto);
+    }
 }

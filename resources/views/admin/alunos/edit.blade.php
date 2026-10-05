@@ -14,9 +14,11 @@ Atualizar Aluno
 </div>
 
 <div class="col-12">
-    <form action="{{route('admin.alunos.update',$aluno->id)}}" method="POST">
+    <form action="{{route('admin.alunos.update',$aluno->id)}}" method="POST" enctype="multipart/form-data">
         @csrf <input type="hidden" name="_token" value="{{csrf_token()}}">
         @method("PUT")
+
+        @include('admin.alunos._foto')
 
         <div class="form-group">
             <label>CPF do Aluno </label>

@@ -14,8 +14,10 @@ Cadastrar Aluno
 </div>
 
 <div class="col-12">
-    <form action="{{route('admin.alunos.store')}}" method="POST">
+    <form action="{{route('admin.alunos.store')}}" method="POST" enctype="multipart/form-data">
         @csrf <input type="hidden" name="_token" value="{{csrf_token()}}">
+
+        @include('admin.alunos._foto')
 
         <div class="form-group">
             <label>CPF do Aluno </label>
@@ -66,7 +68,7 @@ Cadastrar Aluno
 --}}
         <div class="form-group">
             <label>Telefone</label>
-            <input type="text" class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{old('tlefone')}}">
+            <input type="text" class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{old('telefone')}}">
             @error('telefone')
             <div class="alert alert-danger">
                 {{$message}}

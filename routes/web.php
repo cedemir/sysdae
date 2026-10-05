@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Schema;
 
 //Rotas para a Home e Single do site de Alunos
 
-Route::get('/', [\App\Http\Controllers\HomeController::class,'index']);
+Route::redirect('/', '/login');
 
 Route::get('/alunos/{slug}', [\App\Http\Controllers\HomeController::class,'show'])->name('aluno.single');
 
@@ -254,7 +254,6 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('atendimentos', \App\Http\Controllers\Admin\AtendimentoController::class);
     Route::resource('cursos', \App\Http\Controllers\Admin\CursoController::class);
     Route::resource('forma_atendimentos', \App\Http\Controllers\Admin\Forma_atendimentoController::class);
-    Route::resource('alunos.fotos', \App\Http\Controllers\Admin\AlunoFotoController::class);
     Route::resource('matriculas', \App\Http\Controllers\Admin\MatriculaController::class);
     Route::resource('medidas_disciplinares', \App\Http\Controllers\Admin\Medidas_disciplinaresController::class);
     Route::resource('ocorrencias', \App\Http\Controllers\Admin\OcorrenciaController::class);
@@ -268,6 +267,9 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('setores', \App\Http\Controllers\Admin\SetorController::class);
     Route::resource('situacao_alunos', \App\Http\Controllers\Admin\SituacaoAlunoController::class);
     Route::resource('turmas', \App\Http\Controllers\Admin\TurmaController::class);
+
+    Route::get('senha', [\App\Http\Controllers\Admin\SenhaController::class, 'edit'])->name('senha.edit');
+    Route::put('senha', [\App\Http\Controllers\Admin\SenhaController::class, 'update'])->name('senha.update');
 
    
     

@@ -17,6 +17,16 @@ class AlunoRequest extends FormRequest
     }
 
     /**
+     * Grava o CPF só com números (a coluna tem 11 caracteres).
+     */
+    protected function prepareForValidation()
+    {
+        if ($this->filled('cpf')) {
+            $this->merge(['cpf' => preg_replace('/\D/', '', $this->input('cpf'))]);
+        }
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -38,14 +48,18 @@ class AlunoRequest extends FormRequest
             'municipio'=> 'required',
             'beneficio_id'=> 'required',
             'situacao_id'=> 'required',
-            'observacoes'=> 'required'
+            'observacoes'=> 'required',
+            'foto'=> 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
         ];
     }
 
     public function messages()
     {
         return [
-            'required'=> 'Este campo é obrigatório'
+            'required'=> 'Este campo é obrigatório',
+            'foto.image'=> 'O arquivo deve ser uma imagem',
+            'foto.mimes'=> 'A foto deve ser JPG, PNG ou WEBP',
+            'foto.max'=> 'A foto deve ter no máximo 2 MB'
     ];
     }
 }

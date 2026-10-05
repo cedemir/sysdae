@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('Vocẽ precisa estar logado!') }}
+                    {{ __('Seja Bem Vindo ao Sysdae!') }}
                 </div>
             </div>
         </div>

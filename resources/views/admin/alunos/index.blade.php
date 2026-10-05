@@ -20,6 +20,7 @@ Meus Alunos
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Foto</th>
                     <th>Nome</th>
                     <th>Cpf</th>
                     <th width="16%">Ações</th>
@@ -29,6 +30,13 @@ Meus Alunos
                 @forelse ($alunos as $aluno)  
                 <tr>
                     <td>{{$aluno->id}} </td>
+                    <td>
+                        @if($aluno->foto)
+                        <img src="{{$aluno->foto->url}}" alt="Foto de {{$aluno->nome}}" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                        @else
+                        <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted" style="width: 40px; height: 40px;"><i class="bi bi-person"></i></span>
+                        @endif
+                    </td>
                     <td>{{$aluno->nome}}</td>
                     <td>{{$aluno->cpf}}</td>
                     <td class="d-flex justify-content-between">

@@ -1,239 +1,298 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.0.1">
     <title>@yield('title') Administração</title>
     @livewireStyles
-    <link rel="canonical" href="http://127.0.0.1:8000">
 
-    <!-- Bootstrap core CSS -->
-    <!--
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    -->
-
-    <link href="{{asset('css/app.css')}}}" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#563d7c">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        :root {
+            --sidebar-width: 260px;
+            --topbar-height: 60px;
+            --sidebar-bg: #1e293b;
+            --sidebar-bg-hover: #273449;
+            --sidebar-text: #cbd5e1;
+            --sidebar-muted: #94a3b8;
+            --sidebar-active: #3b82f6;
+            --page-bg: #f1f5f9;
         }
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-    <!-- Custom styles for this template -->
-    <style>
+
         body {
-            font-size: .875rem;
-        }
-
-        .feather {
-            width: 16px;
-            height: 16px;
-            vertical-align: text-bottom;
+            font-size: .9rem;
+            background-color: var(--page-bg);
         }
 
         /*
-         * Sidebar
+         * Menu lateral
          */
-
         .sidebar {
             position: fixed;
             top: 0;
             bottom: 0;
             left: 0;
-            z-index: 100; /* Behind the navbar */
-            padding: 48px 0 0; /* Height of navbar */
-            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            z-index: 1040;
+            width: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            transition: transform .25s ease;
         }
 
-        @media (max-width: 767.98px) {
-            .sidebar {
-                top: 5rem;
-            }
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            height: var(--topbar-height);
+            padding: 0 1.25rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: .05em;
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            flex-shrink: 0;
         }
 
-        .sidebar-sticky {
-            position: relative;
-            top: 0;
-            height: calc(100vh - 48px);
-            padding-top: .5rem;
-            overflow-x: hidden;
-            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        .sidebar-brand .bi {
+            color: var(--sidebar-active);
+            font-size: 1.4rem;
         }
 
-        @supports ((position: -webkit-sticky) or (position: sticky)) {
-            .sidebar-sticky {
-                position: -webkit-sticky;
-                position: sticky;
-            }
+        .sidebar-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: .75rem 0;
         }
 
-        .sidebar .nav-link {
-            font-weight: 500;
-            color: #333;
+        .sidebar-nav,
+        .sidebar-submenu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
-        .sidebar .nav-link .feather {
-            margin-right: 4px;
-            color: #999;
-        }
-
-        .sidebar .nav-link.active {
-            color: #007bff;
-        }
-
-        .sidebar .nav-link:hover .feather,
-        .sidebar .nav-link.active .feather {
-            color: inherit;
-        }
-
-        .sidebar-heading {
-            font-size: .75rem;
+        .sidebar-group-toggle {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            padding: .65rem 1.25rem;
+            color: var(--sidebar-text);
+            font-weight: 600;
             text-transform: uppercase;
+            font-size: .75rem;
+            letter-spacing: .06em;
+        }
+
+        .sidebar-group-toggle:hover {
+            color: #fff;
+            text-decoration: none;
+            background-color: var(--sidebar-bg-hover);
+        }
+
+        .sidebar-group-toggle .bi {
+            font-size: 1rem;
+        }
+
+        .sidebar-caret {
+            margin-left: auto;
+            font-size: .75rem !important;
+            transition: transform .2s ease;
+        }
+
+        .sidebar-group-toggle.collapsed .sidebar-caret {
+            transform: rotate(-90deg);
+        }
+
+        .sidebar-submenu {
+            padding-bottom: .4rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            margin: .1rem .75rem;
+            padding: .5rem .85rem .5rem 1.4rem;
+            border-radius: .4rem;
+            color: var(--sidebar-muted);
+        }
+
+        .sidebar-link:hover {
+            color: #fff;
+            text-decoration: none;
+            background-color: var(--sidebar-bg-hover);
+        }
+
+        .sidebar-link.active {
+            color: #fff;
+            background-color: var(--sidebar-active);
         }
 
         /*
-         * Navbar
+         * Barra superior
          */
-
-        .navbar-brand {
-            padding-top: .75rem;
-            padding-bottom: .75rem;
-            font-size: 1rem;
-            background-color: rgba(0, 0, 0, .25);
-            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            display: flex;
+            align-items: center;
+            height: var(--topbar-height);
+            padding: 0 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, .08);
         }
 
-        .navbar .navbar-toggler {
-            top: .25rem;
-            right: 1rem;
+        .topbar-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0;
+            color: #0f172a;
         }
 
-        .navbar .form-control {
-            padding: .75rem 1rem;
-            border-width: 0;
-            border-radius: 0;
+        .topbar-toggle {
+            display: none;
+            border: 0;
+            background: none;
+            font-size: 1.5rem;
+            margin-right: .75rem;
+            padding: 0;
+            color: #0f172a;
         }
 
-        .form-control-dark {
+        .topbar-user {
+            margin-left: auto;
+        }
+
+        .topbar-user .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            color: #0f172a;
+        }
+
+        .topbar-user .dropdown-toggle:hover {
+            text-decoration: none;
+        }
+
+        .avatar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: var(--sidebar-active);
             color: #fff;
-            background-color: rgba(255, 255, 255, .1);
-            border-color: rgba(255, 255, 255, .1);
+            font-weight: 600;
         }
 
-        .form-control-dark:focus {
-            border-color: transparent;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+        .topbar-user .dropdown-item .bi {
+            margin-right: .5rem;
         }
 
+        /*
+         * Conteúdo
+         */
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+        }
+
+        .main-content {
+            padding: 0 1.5rem 2rem;
+        }
+
+        .sidebar-backdrop {
+            display: none;
+        }
+
+        /*
+         * Telas pequenas: menu lateral vira gaveta
+         */
+        @media (max-width: 991.98px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+            }
+
+            .topbar-toggle {
+                display: inline-block;
+            }
+
+            .sidebar-open .sidebar {
+                transform: translateX(0);
+            }
+
+            .sidebar-open .sidebar-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                z-index: 1030;
+                background-color: rgba(15, 23, 42, .5);
+            }
+        }
     </style>
-    <!-- Custom styles for this template -->
-
 </head>
 <body>
-<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Administrar</a>
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#" onclick="
-            document.getElementById('logout').submit()">Sair</a>
-            <form action="{{route('logout')}}" method="POST" id="logout">
-                @csrf
-            </form>
-       
-        </li>
-    </ul>
-</nav>
 
-<div class="container-fluid">
-    <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="sidebar-sticky pt-3">
-                <ul class="nav flex-column">
+@include('layouts.partials.sidebar')
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Cadastros
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                          <li><a href={{route('admin.alunos.index')}}>Alunos</a></li>
-                          <li><a href={{route('admin.alojamentos.index')}}>Alojamentos</a></li>
-                          <li><a href={{route('admin.apartamentos.index')}}>Apartamentos</a></li>
-                          <li><a href={{route('admin.atendimentos.index')}}>Atendimentos</a></li>
-                          <li><a href={{route('admin.matriculas.index')}}>Matriculas</a></li>
-                          <li><a href={{route('admin.ocorrencias.index')}}>Ocorrencias</a></li>
-                          <li><a href={{route('admin.ocorrencias_atividades_orientadas.index')}}>Atividades Orientadas</a></li>
-                          <li><a href={{route('admin.residencias.index')}}>Residência Estudantil</a></li>
-                          <!-- <li><a href={{route('admin.residencia_autorizacoes.index')}}>Autorizações de Saída</a></li> -->
-                          <li><a href={{route('admin.residencia_faltas.index')}}>Faltas na Residencia</a></li>
-                          
-                        </ul>
-                      </div>
+<div class="main-wrapper">
+    <header class="topbar">
+        <button class="topbar-toggle" type="button" id="sidebarToggle" aria-label="Abrir menu">
+            <i class="bi bi-list"></i>
+        </button>
 
-                      <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Relatórios
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                          <li><a href={{route('users.index')}}>Usuários</a></li>
-                          <li><a href={{route('residentes.index')}}>Total de Residentes</a></li>
-                          <li><a href={{route('semirresidentes.index')}}>Total de Semirresidentes</a></li>
-                          <li><a href={{route('ocorrencias.index')}}>Ocorrências</a></li>
-                          
-                          
-                        </ul>
-                      </div>
+        <h1 class="topbar-title">@yield('title')</h1>
 
-                      <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          Cadastros Gerais
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                          <li><a href={{route('admin.cursos.index')}}>Cursos</a></li>
-                          <li><a href={{route('admin.forma_atendimentos.index')}}>Formas de Atendimento</a></li>
-                          <li><a href={{route('admin.programa_beneficios.index')}}>Programa de Benefício</a></li>
-                          <li><a href={{route('admin.regime_residencias.index')}}>Regime de Residência</a></li>
-                          <li><a href={{route('admin.series.index')}}>Séries</a></li>
-                          <li><a href={{route('admin.setores.index')}}>Setores</a></li>
-                          <li><a href={{route('admin.situacao_alunos.index')}}>Situação dos Alunos</a></li>
-                          <li><a href={{route('admin.turmas.index')}}>Turmas</a></li>
-                          
-                        </ul>
-                      </div>                   
-                </ul>
+        @auth
+        <div class="dropdown topbar-user">
+            <a href="#" class="dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="avatar">{{ mb_strtoupper(mb_substr(Auth::user()->name, 0, 1)) }}</span>
+                <span class="d-none d-sm-inline">{{ Auth::user()->name }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow-sm" aria-labelledby="userMenu">
+                <h6 class="dropdown-header">{{ Auth::user()->email }}</h6>
+                <a class="dropdown-item" href="{{ route('admin.senha.edit') }}"><i class="bi bi-key"></i>Alterar senha</a>
+                <div class="dropdown-divider"></div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>Sair</button>
+                </form>
             </div>
-        </nav>
+        </div>
+        @endauth
+    </header>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <main role="main" class="main-content">
 
-            @yield('content')
+        @yield('content')
 
-        </main>
-    </div>
+    </main>
 </div>
-<script src="{{asset('js/app.js')}}"></script> 
+
+<script src="{{asset('js/app.js')}}"></script>
+<script>
+    (function () {
+        var body = document.body;
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+            body.classList.toggle('sidebar-open');
+        });
+        document.getElementById('sidebarBackdrop').addEventListener('click', function () {
+            body.classList.remove('sidebar-open');
+        });
+    })();
+</script>
 @yield('scripts')
 @livewireScripts
 </body>

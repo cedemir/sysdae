@@ -40,7 +40,7 @@ Cadastro de Alunos
             @foreach ($data->fotos as $foto)
 
               <div class="col3">
-                <img src="{{$foto->foto}}" alt="Foto do Aluno {{$data->nome}}" class="img-fluid">
+                <img src="{{$foto->url}}" alt="Foto do Aluno {{$data->nome}}" class="img-fluid">
               </div>
 
             @endforeach

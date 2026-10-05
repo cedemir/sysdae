@@ -32,6 +32,11 @@ public function fotos()
         return $this->hasMany(Foto::class); //id_foto
     }
 
+public function foto()
+    {
+        return $this->hasOne(Foto::class)->latestOfMany();
+    }
+
     
 
 public function programa_beneficio(){
